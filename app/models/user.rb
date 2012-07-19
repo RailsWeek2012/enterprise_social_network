@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
 
 	belongs_to :company
 	has_many :reservations
+
+	validates :email, :first_name, :last_name, presence: true
 end
