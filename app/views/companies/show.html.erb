@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
-<p>
-  <b>Owner:</b>
-  <%= link_to @company.owner do %>
-  <%= @company.owner.first_name %>  <%= @company.owner.last_name %>
-  <% end %>
-</p>
-<p>
-  <b>Members:</b>
-  <%= User.where('company_id = ?', @company.id).size %>
-</p>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div class="btn-group actions">
+  <%= link_edit_company(@company) %>
+  <%= back_to_companies %>
+</div>
+<div class="well">
+    <p>
+      <b>Name:</b>
+      <%= @company.name %>
+    </p>
+    <p>
+      <b>Owner:</b>
+      <%= link_to @company.owner do %>
+      <%= @company.owner.first_name %>  <%= @company.owner.last_name %>
+      <% end %>
+    </p>
+    <p>
+      <b>Members:</b>
+      <%= User.where('company_id = ?', @company.id).size %>
+    </p>
+</div>

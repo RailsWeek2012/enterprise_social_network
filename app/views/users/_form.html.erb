@@ -12,7 +12,6 @@
 <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
         <% @company.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

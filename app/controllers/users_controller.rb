@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite
+	  render action: "invite"
+  end
+
   # GET /users/new
   # GET /users/new.json
   def new

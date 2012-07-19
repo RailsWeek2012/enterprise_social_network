@@ -24,12 +24,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   # GET /companies/new.json
   def new
-    @company = Company.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @company }
-    end
+	  redirect_to companies_path
   end
 
   # GET /companies/1/edit

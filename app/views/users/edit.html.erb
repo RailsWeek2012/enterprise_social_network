@@ -1,3 +1,8 @@
+<div class="btn-group actions">
+  <%= link_show(@user) %>
+  <%= back_to_list %>
+</div>
+
 <h1>Editing user</h1>
 
 <%= form_for(@user) do |f| %>
@@ -14,30 +19,26 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :first_name %><br />
+      <%= f.label :first_name %>
       <%= f.text_field :first_name %>
     </div>
     <div class="field">
-      <%= f.label :last_name %><br />
+      <%= f.label :last_name %>
       <%= f.text_field :last_name %>
     </div>
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %>
       <%= f.email_field :email %>
     </div>
     <div class="field">
-      <%= f.label :password %><br />
+      <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Save", class: "btn" %>
     </div>
 <% end %>
-
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
