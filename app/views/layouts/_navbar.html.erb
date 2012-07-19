@@ -1,0 +1,17 @@
+<% @application_name = "EnSoNet" %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="<%= users_path %>"><%= @application_name %></a>
+      <ul class="nav pull-right">
+        <% if current_user %>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+            <li><%= link_to "Logout", :logout %></li>
+        <% else %>
+            <li><%= link_to "Register", new_user_path %></li>
+            <li><%= link_to "Login", :login %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

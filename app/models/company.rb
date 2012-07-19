@@ -4,4 +4,6 @@ class Company < ActiveRecord::Base
 	has_many :users
   has_many :reservations
 	belongs_to :owner, class_name: "User"
+
+
 end
