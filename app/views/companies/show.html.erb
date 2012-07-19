@@ -6,7 +6,13 @@
 </p>
 <p>
   <b>Owner:</b>
+  <%= link_to @company.owner do %>
   <%= @company.owner.first_name %>  <%= @company.owner.last_name %>
+  <% end %>
+</p>
+<p>
+  <b>Members:</b>
+  <%= User.where('company_id = ?', @company.id).size %>
 </p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |

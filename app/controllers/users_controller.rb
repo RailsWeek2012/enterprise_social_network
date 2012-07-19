@@ -27,6 +27,17 @@ class UsersController < ApplicationController
 	  @company = Company.new
     @user = User.new
 
+	  unless params[:token].nil?
+		  @reservation = Reservation.find_by_token(params[:token])
+			if @reservation.nil?
+				redirect_to users_path
+				return
+			else
+		    @company = @reservation.company
+		    @user.email = @reservation.email
+			end
+	  end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -42,13 +53,21 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @company = Company.new(params[:company])
+    if params[:reservation].nil?
+      @company = Company.new(params[:company])
+    else
+	    @company = Company.find(params[:company][:id])
+	    @user.company = @company
+	    Reservation.find_by_token(params[:reservation][:token]).delete
+	  end
 
     respond_to do |format|
       if @user.save
-	      @company.owner = @user
-	      @company.save
-	      @user.company = @company
+	      if params[:reservation].nil?
+	        @company.owner = @user
+	        @company.save
+	        @user.company = @company
+	      end
 	      @user.save
         format.html { redirect_to :users, notice: 'Registration successful.' }
         format.json { render json: @user, status: :created, location: @user }

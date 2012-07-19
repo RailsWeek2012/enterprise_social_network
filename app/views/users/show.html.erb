@@ -17,7 +17,9 @@
 
 <p>
   <b>Company:</b>
-  <%= @user.company.name %>
+  <%= link_to @user.company do %>
+      <%= @user.company.name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

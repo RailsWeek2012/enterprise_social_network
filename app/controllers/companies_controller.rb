@@ -35,6 +35,9 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     @company = Company.find(params[:id])
+	  unless @company.owner == current_user
+		  redirect_to companies_path
+	  end
   end
 
   # POST /companies

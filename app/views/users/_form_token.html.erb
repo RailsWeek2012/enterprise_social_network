@@ -1,0 +1,54 @@
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @company.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= form_tag :users do %>
+    <h2>Company</h2>
+    <div class="field">
+      <h3><%= @company.name %></h3>
+      <%= hidden_field :company, :id %>
+    </div>
+    <h2>User</h2>
+    <div class="field">
+      First Name:<br />
+      <%= text_field :user, :first_name %>
+    </div>
+    <div class="field">
+      Last Name:<br />
+      <%= text_field :user, :last_name %>
+    </div>
+    <div class="field">
+      Email: <b><%= @user.email %></b>
+      <%= hidden_field :user, :email %>
+    </div>
+    <div class="field">
+      Password:<br />
+      <%= password_field :user, :password %>
+    </div>
+    <div class="field">
+      Password Confirmation:<br />
+      <%= password_field :user, :password_confirmation %>
+    </div>
+    <div class="actions">
+      <%= hidden_field :reservation, :token %>
+      <%= submit_tag 'Create' %>
+    </div>
+<% end %>
