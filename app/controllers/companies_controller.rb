@@ -13,14 +13,18 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-	  if params[:id].is_a? Integer
-	    @company = Company.find(params[:id])
-	  else
-		  @company = Company.find_by_name(params[:id])
-	  end
+	  begin
+		  if params[:id].to_i != 0
+		    @company = Company.find(params[:id])
+		  else
+			  @company = Company.find_by_name(params[:id])
+		  end
+	  rescue Exception => e
+		  @company = nil
+		end
 
 	  if @company.nil?
-		  redirect_to root_path
+		  redirect_to root_path, alert: "This company does not exist."
 		  return
 	  end
 

@@ -15,7 +15,12 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @group = Group.find(params[:id])
+	  begin
+      @group = Group.find(params[:id])
+	  rescue Exception => e
+		  redirect_to root_path, alert: "This group does not exist."
+		  return
+		end
 
     respond_to do |format|
       format.html # show.html.erb

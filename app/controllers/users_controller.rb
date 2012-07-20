@@ -15,7 +15,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+	  begin
+      @user = current_user.company.users.find(params[:id])
+	  rescue Exception => e
+		  redirect_to root_path, alert: "This user does not exist."
+			return
+		end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -126,7 +131,12 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    if @user.company.owner != @user
+	    @user.destroy
+    else
+	    redirect_to root_path, alert: "You can't delete your account, while you're the owner of your company."
+			return
+    end
 
     respond_to do |format|
       format.html { redirect_to root_path, notice: "Your account has been cancelled." }
