@@ -1,3 +1,30 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.group_list {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0px;
+  font-weight: bold;
+
+  li {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+
+    a {
+      display: block;
+      padding: 2px;
+    }
+    a:hover {
+      background-color: #EFEFEF;
+    }
+  }
+}
+
+.group_members {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0px;
+}

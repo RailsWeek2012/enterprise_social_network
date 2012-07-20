@@ -1,0 +1,12 @@
+<h3>Groups</h3>
+<ul class="group_list">
+  <% @groups.each do |group| %>
+      <li><%= link_to group.name, group %></li>
+      </tr>
+  <% end %>
+  <li>
+    <%= link_to new_group_path do %>
+      <i class="icon-plus"></i> New Group
+    <% end %>
+  </li>
+</ul>

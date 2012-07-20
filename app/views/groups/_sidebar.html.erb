@@ -1,0 +1,13 @@
+<h3>Leader</h3>
+<%= profile_link @group.leader %>
+
+<h3>Members</h3>
+<ul class="group_members">
+  <% list = (@group.users-[@group.leader]) %>
+  <% list.each do |user| %>
+      <li><%= profile_link user %></li>
+  <% end %>
+  <% if list.empty? %>
+      <li>No other members.</li>
+  <% end %>
+</ul>

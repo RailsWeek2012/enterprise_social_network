@@ -12,7 +12,26 @@
  *= require_tree .
  */
 @import "bootstrap";
+@import "font-awesome";
 
 body {
   padding-top: 60px;
+}
+
+.menu {
+  padding-right: 10px;
+}
+
+$content_border: 1px solid #999;
+
+.content {
+  border-left: $content_border;
+  border-right: $content_border;
+  margin: 0px -1px;
+  padding: 0px 10px;
+  min-height: 450px;
+}
+
+.sidebar {
+  padding-left: 10px;
 }

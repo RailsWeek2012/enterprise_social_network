@@ -16,11 +16,29 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="span3"></div>
-      <div class="span6">
-        <%= yield %>
+      <div class="span2">
+        <div class="menu">
+            <% if user_signed_in? %>
+                <h3><%= link_to "Mainstream", :pages_home %></h3>
+                <% @groups = current_user.groups %>
+                <%= render partial: "groups/list" %>
+            <% end %>
+         </div>
       </div>
-      <div class="span3"></div>
+      <div class="span8">
+        <div class="content">
+            <%= yield %>
+        </div>
+      </div>
+      <div class="span2">
+        <div class="sidebar">
+            <% if user_signed_in? %>
+              <% unless @group.nil? %>
+                <%= render "groups/sidebar" %>
+              <% end %>
+            <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </body>

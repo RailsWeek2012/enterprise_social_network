@@ -20,33 +20,48 @@
     </div>
 <% end %>
 <%= form_tag :users do %>
-<h2>Company</h2>
-<div class="field">
-  Name:<br />
-  <%= text_field :company, :name %>
-</div>
-<h2>User</h2>
-<div class="field">
-  First Name:<br />
-  <%= text_field :user, :first_name %>
-</div>
-<div class="field">
-  Last Name:<br />
-  <%= text_field :user, :last_name %>
-</div>
-<div class="field">
-  Email:<br />
-  <%= text_field :user, :email %>
-</div>
-<div class="field">
-  Password:<br />
-  <%= password_field :user, :password %>
-</div>
-<div class="field">
-  Password Confirmation:<br />
-  <%= password_field :user, :password_confirmation %>
-</div>
-<div class="actions">
-  <%= submit_tag 'Create' %>
-</div>
+    <div class="form-inputs">
+      <h3>Company</h3>
+      <div class="control-group">
+        <%= label :company, :name, class: 'control-label' %>
+        <div class="controls">
+          <%= text_field :company, :name %>
+        </div>
+      </div>
+      <h3>User</h3>
+      <div class="control-group">
+        <%= label :user, :first_name, class: 'control-label' %>
+        <div class="controls">
+          <%= text_field :user, :first_name %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label :user, :last_name, class: 'control-label' %>
+        <div class="controls">
+          <%= text_field :user, :last_name %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label :user, :email, class: 'control-label' %>
+        <div class="controls">
+          <%= text_field :user, :email %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label :user, :password, class: 'control-label' %>
+        <div class="controls">
+          <%= password_field :user, :password %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label :user, :password_confirmation, class: 'control-label' %>
+        <div class="controls">
+          <%= password_field :user, :password_confirmation %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag 'Create', class: "btn btn-success" %>
+    </div>
 <% end %>

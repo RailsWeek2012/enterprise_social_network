@@ -8,6 +8,6 @@ module CompaniesHelper
 	end
 
 	def link_edit_company(company)
-		link_to "Edit", edit_company_path(company), class: "btn"
+		link_to "Edit", edit_company_path(company), class: "btn" if current_user == company.owner
 	end
 end

@@ -32,6 +32,8 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    @group.leader = current_user
+    @group.users.push current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,6 +50,8 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    @group.leader = current_user
+    @group.users.push current_user
 
     respond_to do |format|
       if @group.save

@@ -3,7 +3,11 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.association :leader, collection: current_user.company.users %>
+    <% if @group.id.nil? %>
+        <%= f.association :leader, collection: current_user.company.users, selected: current_user, disabled: true %>
+    <% else %>
+        <%= f.association :leader, collection: current_user.company.users %>
+    <% end %>
   </div>
 
   <div class="form-actions">
