@@ -1,12 +1,10 @@
-<h1>Listing users</h1>
+<h1>Members of <%= current_user.company.name %></h1>
 <table class="table table-bordered table-striped table-condensed">
   <thead>
       <tr>
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
-        <th></th>
-        <th></th>
         <th></th>
       </tr>
   </thead>
@@ -17,8 +15,6 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

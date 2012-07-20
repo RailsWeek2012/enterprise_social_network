@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.where('company_id = ?', current_user.company_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,13 +28,14 @@ class UsersController < ApplicationController
   end
 
   def send_invite
-	  check = Reservation.find_by_email(params[:email])
+	  check = Reservation.find_by_email(params[:email]) || User.find_by_email(params[:email])
 	  @reservation = Reservation.new
 	  @reservation.email = params[:email]
 	  @reservation.company = current_user.company
 	  @reservation.inviter = current_user
 	  @reservation.token = Digest::SHA1.hexdigest(params[:email])[4..20]
 	  if @reservation.save && check.nil?
+		  UserMailer.invitation_mail(@reservation).deliver
 		  redirect_to invite_user_path, notice: "Invitation sent."
 	  else
 		  if check.nil?
@@ -128,7 +129,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to root_path, notice: "Your account has been cancelled." }
       format.json { head :no_content }
     end
   end

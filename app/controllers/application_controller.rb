@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :user_signed_in?
 
+  $application_name = "EnSoNet"
+
   private
 
   def current_user_session

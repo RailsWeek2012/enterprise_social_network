@@ -42,3 +42,5 @@
       <%= f.submit "Save", class: "btn" %>
     </div>
 <% end %>
+
+<%= button_to "Delete account", user_path(current_user), method: :delete, type: :button, confirm: "Do you really want to delete your account?", class: "btn btn-danger" %>
