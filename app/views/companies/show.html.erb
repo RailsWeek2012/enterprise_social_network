@@ -10,7 +10,7 @@
     <p>
       <b>Owner:</b>
       <%= link_to @company.owner do %>
-      <%= @company.owner.first_name %>  <%= @company.owner.last_name %>
+      <%= @company.owner.full_name %>
       <% end %>
     </p>
     <p>

@@ -13,18 +13,21 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @company = Company.find(params[:id])
+	  if params[:id].is_a? Integer
+	    @company = Company.find(params[:id])
+	  else
+		  @company = Company.find_by_name(params[:id])
+	  end
+
+	  if @company.nil?
+		  redirect_to root_path
+		  return
+	  end
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
     end
-  end
-
-  # GET /companies/new
-  # GET /companies/new.json
-  def new
-	  redirect_to companies_path
   end
 
   # GET /companies/1/edit

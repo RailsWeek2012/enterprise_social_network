@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Message:</b>
+  <%= @post.message %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @post.user_id %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @post.group_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

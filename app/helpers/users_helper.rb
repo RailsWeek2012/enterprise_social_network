@@ -1,13 +1,13 @@
 module UsersHelper
-	def back_to_list
+	def back_to_users
 		link_to "Back", users_path, class: "btn"
 	end
 
-	def link_show(user)
-		link_to "Show", user, class: "btn"
+	def profile_link(user)
+		link_to user.full_name, user
 	end
 
-	def link_edit(user)
+	def edit_profile(user)
 		link_to "Edit", edit_user_path(user), class: "btn"
 	end
 end

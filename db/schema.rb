@@ -11,13 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719141810) do
+ActiveRecord::Schema.define(:version => 20120720125116) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "owner_id"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "leader_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups_users", :id => false, :force => true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], :name => "index_groups_users_on_group_id_and_user_id"
+
+  create_table "posts", :force => true do |t|
+    t.string   "message"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   create_table "reservations", :force => true do |t|

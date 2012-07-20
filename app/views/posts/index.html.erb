@@ -1,0 +1,21 @@
+<h1>Listing posts</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>User</th>
+      <th>Group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @posts %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>
