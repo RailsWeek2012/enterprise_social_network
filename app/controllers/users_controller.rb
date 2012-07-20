@@ -1,3 +1,5 @@
+require 'digest'
+
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -23,6 +25,24 @@ class UsersController < ApplicationController
 
   def invite
 	  render action: "invite"
+  end
+
+  def send_invite
+	  check = Reservation.find_by_email(params[:email])
+	  @reservation = Reservation.new
+	  @reservation.email = params[:email]
+	  @reservation.company = current_user.company
+	  @reservation.inviter = current_user
+	  @reservation.token = Digest::SHA1.hexdigest(params[:email])[4..20]
+	  if @reservation.save && check.nil?
+		  redirect_to invite_user_path, notice: "Invitation sent."
+	  else
+		  if check.nil?
+		    redirect_to invite_user_path
+		  else
+			  redirect_to invite_user_path, alert: "This user has already been invited."
+			end
+	  end
   end
 
   # GET /users/new

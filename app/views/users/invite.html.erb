@@ -1,1 +1,9 @@
 <h1>Invite users</h1>
+<%= form_tag :send_invite_user do %>
+    <div class="control-group email required">
+      <div class="controls">
+        <%= text_field_tag :email, nil, placeholder: 'Email', required: true, type: :email %>
+      </div>
+    </div>
+    <%= submit_tag "Abschicken", class: "btn" %>
+<% end %>

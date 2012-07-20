@@ -39,3 +39,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'authlogic'
+gem 'simple_form'
