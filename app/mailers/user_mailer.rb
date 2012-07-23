@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
 	def invitation_mail(reservation)
 		@reservation = reservation
-		@url = new_user_path+"?token="+reservation.token
+		@url = new_user_url.to_s+"?token="+reservation.token
 		mail(to: reservation.email, subject: "You have been invited to "+$application_name)
 	end
 end

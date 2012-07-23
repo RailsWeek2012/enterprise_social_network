@@ -20,11 +20,19 @@
   <% @comments = Post.where('parent_id = ?', post.id).order('created_at') %>
   <span class="comments">
     <i class="icon-comments-alt"></i> <%= Post.where('parent_id = ?', post.id).count %> Comments
-    <a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>
-    <% if post.user_id == current_user.id %>
-        <a class="btn btn-mini" onclick="editPost($(this).parents('.post'))"><i class="icon-pencil"></i> Edit</a>
-        <a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents('.post'))"><i class="icon-remove"></i> Delete</a>
+    <%= link_to new_post_path, remote: true, class: "btn btn-mini" do %>
+        <i class="icon-comment-alt"></i> Comment
     <% end %>
+    <% if post.user_id == current_user.id %>
+        <%= link_to edit_post_path(post), remote: true, class: "btn btn-mini" do  %>
+            <i class="icon-pencil"></i> Edit
+        <% end %>
+        <%= link_to post_path(post), remote: true, method: :delete, class: "btn btn-mini btn-danger", confirm: "Do you really want to delete this post and all its comments?" do %>
+            <i class="icon-remove"></i> Delete
+        <% end %>
+    <% end %>
+    <div class="add_comment"></div>
+    <!--
     <%= form_tag( '/posts.json', remote: true, class: "new_comment_form", style: "display: none;" ) do %>
         <%= text_area_tag "post[message]" %>
         <%= hidden_field_tag "post[parent_id]", post.id %>
@@ -33,6 +41,7 @@
         <%= hidden_field_tag "post[company_id]", current_user.company_id %>
         <%= submit_tag "Send comment", class: "btn" %>
     <% end %>
+    -->
     <% if @comments.count > 3 %>
         <div class="show_older_comments"><a class="btn">Show older comments</a></div>
     <% end %>
@@ -60,8 +69,12 @@
             </abbr>
           </span>
         <% if comment.user_id == current_user.id %>
-            <a class="btn btn-mini" onclick="editComment($(this).parents('.comment'))"><i class="icon-pencil"></i> Edit</a>
-            <a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents('.comment'))"><i class="icon-remove"></i> Delete</a>
+            <%= link_to edit_post_path(comment), remote: true, class: "btn btn-mini" do  %>
+                <i class="icon-pencil"></i> Edit
+            <% end %>
+            <%= link_to post_path(comment), remote: true, method: :delete, class: "btn btn-mini btn-danger", confirm: "Do you really want to delete this comment?" do %>
+                <i class="icon-remove"></i> Delete
+            <% end %>
         <% end %>
         </div>
     <% end %>

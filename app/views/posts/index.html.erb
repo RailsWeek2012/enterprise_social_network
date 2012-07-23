@@ -1,6 +1,6 @@
 <h2><%= params[:group].nil? ? "Mainstream" : Group.find(params[:group]).name %></h2>
 
-<%= form_tag( '/posts.json', remote: true, id: "new_post" ) do %>
+<%= form_tag( '/posts', remote: true, id: "new_post" ) do %>
     <%= text_area_tag "post[message]" %>
     <%= hidden_field_tag "post[user_id]", current_user.id %>
     <%= hidden_field_tag "post[group_id]", params[:group] %>

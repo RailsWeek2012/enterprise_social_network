@@ -1,0 +1,6 @@
+<% if @post.parent_id? %>
+    $('#post_<%= @post.id %> .add_comment').html(
+            '<%= escape_javascript(
+                    render(partial: 'posts/form')
+            ) %>');
+<% end %>

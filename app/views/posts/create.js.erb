@@ -1,0 +1,8 @@
+<% if @post.parent_id.nil? %>
+    $('#new_post').after('<%= escape_javascript(render @post) %>');
+    $('#post_<%= @post.id %> .timeago').timeago();
+    $('#post_<%= @post.id %> .message').linkify();
+    $('#new_post textarea').val('');
+<% else %>
+
+<% end %>

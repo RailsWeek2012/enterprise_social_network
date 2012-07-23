@@ -1,0 +1,4 @@
+$('#comment_<%= @post.id %> .message, #post_<%= @post.id %> .message').html(
+        '<%= escape_javascript(
+                render(partial: 'posts/form')
+        ) %>');

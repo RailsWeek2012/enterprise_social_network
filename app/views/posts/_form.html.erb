@@ -1,11 +1,11 @@
-<%= simple_form_for(@post) do |f| %>
+<%= simple_form_for(@post, remote: true) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :message %>
-    <%= f.input :user_id %>
-    <%= f.input :group_id %>
-    <%= f.input :company_id %>
+    <%= f.input :message, as: :text, input_html: { rows: 3 } %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :group_id, type: 'hidden' %>
+    <%= f.hidden_field :company_id, type: 'hidden' %>
   </div>
 
   <div class="form-actions">

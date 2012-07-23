@@ -1,0 +1,1 @@
+$('#comment_<%= @post.id %> .message, #post_<%= @post.id %> .message').html('<%= escape_javascript(simple_format(@post.message)) %>').linkify();
