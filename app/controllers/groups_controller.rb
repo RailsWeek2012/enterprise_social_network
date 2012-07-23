@@ -12,6 +12,21 @@ class GroupsController < ApplicationController
 		end
   end
 
+  def invite
+	  if user_signed_in?
+		  @group = Group.find(params[:group])
+		  @user = User.find(params[:user])
+
+		  respond_to do |format|
+			  if @group.users.push @user
+				  format.json { render json: { success: true, group: @group, user: @user, inviter: current_user } }
+			  else
+				  format.json { render json: { success: false, group: @group, user: @user, inviter: current_user } }
+				end
+		  end
+	  end
+  end
+
   # GET /groups/1
   # GET /groups/1.json
   def show

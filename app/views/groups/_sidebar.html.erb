@@ -10,4 +10,18 @@
   <% if list.empty? %>
       <li>No other members.</li>
   <% end %>
+  <% if current_user == @group.leader %>
+      <% @users = User.where('company_id = ?', current_user.company_id) %>
+      <% @allowed_users = @users - @group.users %>
+      <% if @allowed_users.count > 0 %>
+          <li>
+            <h3>Invite to Group</h3>
+            <%= form_tag( '/groups/invite.json', remote: true, id: "invite_to_group" ) do %>
+                <%= select_tag :user, options_from_collection_for_select(@allowed_users, "id", "full_name") %>
+                <%= hidden_field_tag :group, params[:group] %>
+                <%= submit_tag "Invite", class: "btn" %>
+            <% end %>
+          </li>
+      <% end %>
+  <% end %>
 </ul>

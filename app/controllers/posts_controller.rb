@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 		  if params[:group].nil?
 			  @posts = PostsHelper.get_all_posts current_user.company_id
 		  else
+			  @group = Group.find(params[:group])
 			  @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
 			end
 

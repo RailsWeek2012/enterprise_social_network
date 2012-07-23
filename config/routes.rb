@@ -7,6 +7,9 @@ EnterpriseSocialNetwork::Application.routes.draw do
 
 	get "users/invite" => "users#invite", as: "invite_user"
   post "users/send_invite" => "users#send_invite", as: "send_invite_user"
+
+  post "groups/invite" => "groups#invite", as: "invite_user_to_group"
+
   resources :companies, except: :new
   resources :users
   resources :user_sessions

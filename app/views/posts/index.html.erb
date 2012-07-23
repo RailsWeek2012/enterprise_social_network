@@ -5,7 +5,7 @@
     <%= hidden_field_tag "post[user_id]", current_user.id %>
     <%= hidden_field_tag "post[group_id]", params[:group] %>
     <%= hidden_field_tag "post[company_id]", current_user.company_id %>
-    <%= submit_tag "Post" %>
+    <%= submit_tag "Post", class: "btn" %>
 <% end %>
 
 <%= render @posts %>

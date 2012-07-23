@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 
 	belongs_to :company
 	has_many :reservations
-  has_and_belongs_to_many :groups
+  has_many :groups_users
+  has_many :groups, through: :groups_users
   has_many :posts
 
 	validates :email, :first_name, :last_name, presence: true

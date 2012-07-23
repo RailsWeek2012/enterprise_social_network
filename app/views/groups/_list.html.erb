@@ -2,7 +2,6 @@
 <ul class="group_list">
   <% @groups.each do |group| %>
       <li><a href="/posts?group=<%= group.id %>"><%= group.name %></a></li>
-      </tr>
   <% end %>
   <li>
     <%= link_to new_group_path do %>
