@@ -79,7 +79,6 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.leader = current_user
-    @group.users.push current_user
 
     respond_to do |format|
       if @group.save && GroupsUser.create(group_id: @group.id, user_id: current_user.id, status: 1)
