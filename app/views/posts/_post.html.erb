@@ -12,6 +12,7 @@
     <i class="icon-comments-alt"></i> <%= Post.where('parent_id = ?', post.id).count %> Comments
     <a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>
     <% if post.user_id == current_user.id %>
+        <a class="btn btn-mini" onclick="editPost($(this).parents('.post'))"><i class="icon-pencil"></i> Edit</a>
         <a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents('.post'))"><i class="icon-remove"></i> Delete</a>
     <% end %>
     <%= form_tag( '/posts.json', remote: true, class: "new_comment_form", style: "display: none;" ) do %>
@@ -39,6 +40,7 @@
             </abbr>
           </span>
         <% if comment.user_id == current_user.id %>
+            <a class="btn btn-mini" onclick="editComment($(this).parents('.comment'))"><i class="icon-pencil"></i> Edit</a>
             <a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents('.comment'))"><i class="icon-remove"></i> Delete</a>
         <% end %>
         </div>

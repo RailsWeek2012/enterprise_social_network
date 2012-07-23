@@ -77,9 +77,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.user == current_user && @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @post }
       else
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }

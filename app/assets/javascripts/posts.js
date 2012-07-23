@@ -11,6 +11,7 @@ function prependPost(post) {
         ' - '+
         '<span class="comments"><i class="icon-comments-alt"></i> 0 Comments '+
             '<a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>'+
+            '<a class="btn btn-mini" onclick="editPost($(this).parents(\'.post\'))"><i class="icon-pencil"></i> Edit</a>'+
             '<a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents(\'.post\'))"><i class="icon-remove"></i> Delete</a>'+
             '<form></form>'+
         '</span>'+
@@ -38,6 +39,31 @@ function prependPost(post) {
     $('.post:first .timeago').timeago();
 }
 
+function editPost(post) {
+    var p = getPost(post.attr("id").split("_")[1]);
+    var x = prompt("Edit your message:", p.message);
+    if(x.trim()) {
+        $.ajax({
+            url: '/posts/'+p.id+'.json',
+            type: 'PUT',
+            data: {
+                post: {
+                    message: x,
+                    group_id: p.group_id,
+                    user_id: p.user_id,
+                    company_id: p.company_id
+                }
+            },
+            success: function(new_p) {
+                post.find('.message').text(new_p.message).linkify();
+            },
+            error: function() {
+                alert("Could not edit post.");
+            }
+        });
+    }
+}
+
 function deletePost(post) {
     if(confirm("Do you really want to delete this post and all its comments?")) {
         $.ajax({
@@ -50,6 +76,44 @@ function deletePost(post) {
                 });
             }
         })
+    }
+}
+
+function getPost(id) {
+    var p;
+    $.ajax({
+        async: false,
+        url: '/posts/'+id+'.json',
+        dataType: 'json',
+        success: function(r) {
+            p = r;
+        }
+    });
+    return p;
+}
+
+function editComment(comment) {
+    var c = getPost(comment.attr("id").split("_")[1]);
+    var x = prompt("Edit your message:", c.message);
+    if(x.trim()) {
+        $.ajax({
+            url: '/posts/'+c.id+'.json',
+            type: 'PUT',
+            data: {
+                post: {
+                    message: x,
+                    group_id: c.group_id,
+                    user_id: c.user_id,
+                    company_id: c.company_id
+                }
+            },
+            success: function(new_c) {
+                comment.find('.message').text(new_c.message).linkify();
+            },
+            error: function() {
+                alert("Could not edit post.");
+            }
+        });
     }
 }
 
@@ -78,6 +142,7 @@ function appendComment(comment) {
             comment.created_at+
         '</abbr>'+
         '</span>'+
+        '<a class="btn btn-mini" onclick="editComment($(this).parents(\'.comment\'))"><i class="icon-pencil"></i> Edit</a>'+
         '<a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents(\'.comment\'))"><i class="icon-remove"></i> Delete</a>'+
         '</div>');
     $('#comment_'+comment.id+' .timeago').timeago();
