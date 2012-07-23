@@ -9,7 +9,7 @@ function prependPost(post) {
             '</abbr>'+
         '</span>'+
         ' - '+
-        '<span class="comments">0 Comments'+
+        '<span class="comments">0 Comments '+
             '<a class="btn btn-mini add_comment">Comment</a>'+
             '<form></form>'+
         '</span>'+
@@ -70,6 +70,7 @@ $(function() {
     $('#new_post')
         .bind('ajax:success', function(xhr, data, status) {
             prependPost(data);
+            $('#new_post textarea').val('');
         });
     $('.new_comment_form')
         .bind('ajax:success', function(xhr, data, status) {
