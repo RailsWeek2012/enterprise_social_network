@@ -7,7 +7,12 @@ class PostsController < ApplicationController
 			  @posts = PostsHelper.get_all_posts current_user.company_id
 		  else
 			  @group = Group.find(params[:group])
-			  @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
+			  if current_user.groups.include? @group
+			    @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
+			  else
+				  redirect_to root_path
+				  return
+				end
 			end
 
 	    respond_to do |format|
