@@ -134,11 +134,11 @@ class UsersController < ApplicationController
     if @user.company.owner != @user
 	    @user.groups.each do |g|
 		    if g.users.count == 1 && g.users.first == @user
-			    g.posts.destroy
+			    g.posts.destroy_all
 			    g.destroy
 		    end
 	    end
-	    @user.posts.destroy
+	    @user.posts.destroy_all
 	    @user.destroy
     else
 	    redirect_to root_path, alert: "You can't delete your account, while you're the owner of your company."

@@ -91,10 +91,12 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+    @comments = Post.where('parent_id = ?', @post.id)
+    @comments.destroy_all
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { head :no_content }
       format.json { head :no_content }
     end
   end

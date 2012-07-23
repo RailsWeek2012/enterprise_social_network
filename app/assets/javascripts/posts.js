@@ -9,8 +9,9 @@ function prependPost(post) {
             '</abbr>'+
         '</span>'+
         ' - '+
-        '<span class="comments">0 Comments '+
-            '<a class="btn btn-mini add_comment">Comment</a>'+
+        '<span class="comments"><i class="icon-comments-alt"></i> 0 Comments '+
+            '<a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>'+
+            '<a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents(\'.post\'))"><i class="icon-remove"></i> Delete</a>'+
             '<form></form>'+
         '</span>'+
     '</div>');
@@ -24,9 +25,9 @@ function prependPost(post) {
         success: function(html) {
             $('.post:first .comments form').replaceWith(html);
             $('.post:first .add_comment').toggle(function() {
-                $(this).next('form.new_comment_form').stop().slideDown();
+                $(this).nextAll('form.new_comment_form').stop().slideDown();
             }, function() {
-                $(this).next('form.new_comment_form').stop().slideUp();
+                $(this).nextAll('form.new_comment_form').stop().slideUp();
             });
         }
     });
@@ -35,6 +36,36 @@ function prependPost(post) {
             appendComment(data);
         });
     $('.post:first .timeago').timeago();
+}
+
+function deletePost(post) {
+    if(confirm("Do you really want to delete this post and all its comments?")) {
+        $.ajax({
+            url: '/posts/'+post.attr("id").split("_")[1],
+            dataType: 'json',
+            type: 'DELETE',
+            success: function() {
+                post.slideUp(400, function() {
+                    $(this).remove();
+                });
+            }
+        })
+    }
+}
+
+function deleteComment(comment) {
+    if(confirm("Do you really want to delete this comment?")) {
+        $.ajax({
+            url: '/posts/'+comment.attr("id").split("_")[1],
+            dataType: 'json',
+            type: 'DELETE',
+            success: function() {
+                comment.slideUp(400, function() {
+                    $(this).remove();
+                });
+            }
+        })
+    }
 }
 
 function appendComment(comment) {
@@ -47,6 +78,7 @@ function appendComment(comment) {
             comment.created_at+
         '</abbr>'+
         '</span>'+
+        '<a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents(\'.comment\'))"><i class="icon-remove"></i> Delete</a>'+
         '</div>');
     $('#comment_'+comment.id+' .timeago').timeago();
 }
@@ -81,9 +113,9 @@ $(function() {
     $('.timeago').timeago();
 
     $('.add_comment').toggle(function() {
-        $(this).next('form.new_comment_form').stop().slideDown();
+        $(this).nextAll('form.new_comment_form').stop().slideDown();
     }, function() {
-        $(this).next('form.new_comment_form').stop().slideUp();
+        $(this).nextAll('form.new_comment_form').stop().slideUp();
     });
 
     $('.show_older_comments').click(function() {

@@ -9,8 +9,11 @@
   -
   <% @comments = Post.where('parent_id = ?', post.id).order('created_at') %>
   <span class="comments">
-    <%= Post.where('parent_id = ?', post.id).count %> Comments
-    <a class="btn btn-mini add_comment">Comment</a>
+    <i class="icon-comments-alt"></i> <%= Post.where('parent_id = ?', post.id).count %> Comments
+    <a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>
+    <% if post.user_id == current_user.id %>
+        <a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents('.post'))"><i class="icon-remove"></i> Delete</a>
+    <% end %>
     <%= form_tag( '/posts.json', remote: true, class: "new_comment_form", style: "display: none;" ) do %>
         <%= text_area_tag "post[message]" %>
         <%= hidden_field_tag "post[parent_id]", post.id %>
@@ -19,7 +22,7 @@
         <%= hidden_field_tag "post[company_id]", current_user.company_id %>
         <%= submit_tag "Send comment", class: "btn" %>
     <% end %>
-    <% if @comments.count > 2 %>
+    <% if @comments.count > 3 %>
         <div class="show_older_comments"><a class="btn">Show older comments</a></div>
     <% end %>
     <% @comments.each do |comment| %>
@@ -35,6 +38,9 @@
               <%= comment.created_at.to_s %>
             </abbr>
           </span>
+        <% if comment.user_id == current_user.id %>
+            <a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents('.comment'))"><i class="icon-remove"></i> Delete</a>
+        <% end %>
         </div>
     <% end %>
   </span>
