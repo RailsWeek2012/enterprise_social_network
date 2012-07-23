@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $comment_margin: 10px;
+$post_border: 1px solid #D3D3D3;
 
 #new_post {
   input {
@@ -18,9 +19,12 @@ $comment_margin: 10px;
 
 .post {
   padding: 0px;
-  border-bottom: 1px solid #E2E2E2;
+  margin-bottom: 12px;
+  border: $post_border;
+  border-radius: 4px;
 
   .name {
+    border-radius: 4px 4px 0px 0px;
     padding: 4px;
     background-color: #EFEFEF;
   }
@@ -46,7 +50,12 @@ $comment_margin: 10px;
 
     .comment {
       margin-left: $comment_margin;
-      border-left: 1px solid #E2E2E2;
+      border-left: $post_border;
+      padding-bottom: 4px;
+
+      .name {
+        border-radius: 0px;
+      }
     }
 
     .comment-hidden {
