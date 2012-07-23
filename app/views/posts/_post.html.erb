@@ -2,11 +2,11 @@
   <h4 class="name"><%= profile_link post.user %></h4>
     <% if post.message.length < 300 %>
       <div class="message">
-        <%= post.message %>
+        <%= simple_format post.message %>
       </div>
     <% else %>
       <div class="message">
-        <%= post.message[0..300] %>...
+        <%= simple_format post.message[0..300] %>...
       </div>
       <a class="message_toggle">[ More ]</a>
       <div class="orig_message"><%= post.message %></div>
@@ -45,11 +45,11 @@
           <h4 class="name"><%= profile_link comment.user %></h4>
         <% if comment.message.length < 300 %>
           <div class="message">
-            <%= comment.message %>
+            <%= simple_format comment.message %>
           </div>
         <% else %>
           <div class="message">
-            <%= comment.message[0..300] %>...
+            <%= simple_format comment.message[0..300] %>...
           </div>
           <a class="message_toggle">[ More ]</a>
           <div class="orig_message"><%= comment.message %></div>

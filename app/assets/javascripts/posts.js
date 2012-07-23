@@ -1,5 +1,15 @@
+function simple_format(msg) {
+    var lines = msg.split("\n");
+    var out = "";
+    for(var x in lines) {
+        out += "<p>"+lines[x]+"</p>"
+    }
+    return out;
+}
+
 function prependPost(post) {
     var user = getUser(post.user_id);
+    post.message = simple_format(post.message)
     $('#new_post').after('<div class="post" id="post_'+post.id+'">'+
         '<h4 class="name"><a href="/users/'+user.id+'">'+user.full_name+'</a></h4>'+
         '<div class="message">'+post.message+'</div>'+
@@ -141,6 +151,7 @@ function deleteComment(comment) {
 
 function appendComment(comment) {
     var user = getUser(comment.user_id);
+    comment.message = simple_format(comment.message)
     $('#post_'+comment.parent_id+' .comments').append('<div class="comment" id="comment_'+comment.id+'">'+
         '<h4 class="name"><a href="/users/'+user.id+'">'+user.full_name+'</a></h4>'+
         '<div class="message">'+comment.message+'</div>'+
