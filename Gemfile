@@ -41,3 +41,4 @@ gem 'jquery-rails'
 
 gem 'authlogic'
 gem 'simple_form'
+gem 'gon'

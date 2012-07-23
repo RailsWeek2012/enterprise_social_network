@@ -1,21 +1,11 @@
-<h1>Listing posts</h1>
+<h2><%= params[:group].nil? ? "Mainstream" : Group.find(params[:group]).name %></h2>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Message</th>
-      <th>User</th>
-      <th>Group</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @posts %>
-  </tbody>
-</table>
+<%= form_tag( '/posts.json', remote: true, id: "new_post" ) do %>
+    <%= text_area_tag "post[message]" %>
+    <%= hidden_field_tag "post[user_id]", current_user.id %>
+    <%= hidden_field_tag "post[group_id]", params[:group] %>
+    <%= hidden_field_tag "post[company_id]", current_user.company_id %>
+    <%= submit_tag "Post" %>
+<% end %>
 
-<br />
-
-<%= link_to 'New Post', new_post_path %>
+<%= render @posts %>

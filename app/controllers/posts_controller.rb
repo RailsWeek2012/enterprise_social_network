@@ -4,9 +4,9 @@ class PostsController < ApplicationController
   def index
 	  if user_signed_in?
 		  if params[:group].nil?
-	      @posts = Post.where('company_id = ?', current_user.company_id)
+			  @posts = PostsHelper.get_all_posts current_user.company_id
 		  else
-			  @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group])
+			  @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
 			end
 
 	    respond_to do |format|

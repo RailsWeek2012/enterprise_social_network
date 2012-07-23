@@ -1,8 +1,9 @@
-<tr>
-  <td><%= post.message %></td>
-  <td><%= profile_link(post.user) %></td>
-  <td><%= post.group_id %></td>
-  <td><%= link_to 'Show', post %></td>
-  <td><%= link_to 'Edit', edit_post_path(post) %></td>
-  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-</tr>
+<div class="post">
+  <h4 class="name"><%=  post.user %></h4>
+  <div class="message"><%= post.message %></div>
+  <div class="date">
+    <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
+      <%= post.created_at.to_s %>
+    </abbr>
+  </div>
+</div>
