@@ -2,14 +2,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-	  if user_signed_in?
-	    @groups = current_user.groups
-
-	    respond_to do |format|
-	      format.html # index.html.erb
-	      format.json { render json: @groups }
-	    end
-		end
+	  redirect_to root_path
   end
 
   def invite
@@ -17,12 +10,32 @@ class GroupsController < ApplicationController
 		  @group = Group.find(params[:group])
 		  @user = User.find(params[:user])
 
+		  gu = GroupsUser.new(group_id: @group.id, user_id: @user.id, status: 0)
+
 		  respond_to do |format|
-			  if @group.users.push @user
+			  if gu.save
 				  format.json { render json: { success: true, group: @group, user: @user, inviter: current_user } }
 			  else
 				  format.json { render json: { success: false, group: @group, user: @user, inviter: current_user } }
 				end
+		  end
+	  end
+  end
+
+  def join
+	  if user_signed_in?
+		  gu = GroupsUser.where('group_id = ? AND user_id = ? AND status = 0', params[:id], current_user.id).first
+		  if gu.update_attribute(:status, 1)
+			  redirect_to "/posts?group="+params[:id]
+		  end
+	  end
+  end
+
+  def decline
+	  if user_signed_in?
+		  gu = GroupsUser.where('group_id = ? AND user_id = ? AND status = 0', params[:id], current_user.id).first
+		  if gu.update_attribute(:status, 2)
+			  redirect_to root_path
 		  end
 	  end
   end
@@ -69,7 +82,7 @@ class GroupsController < ApplicationController
     @group.users.push current_user
 
     respond_to do |format|
-      if @group.save
+      if @group.save && GroupsUser.create(group_id: @group.id, user_id: current_user.id, status: 1)
         format.html { redirect_to root_path, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else

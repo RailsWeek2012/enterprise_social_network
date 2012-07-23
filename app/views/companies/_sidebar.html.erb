@@ -1,0 +1,13 @@
+<h3>Owner</h3>
+<%= profile_link @company.owner %>
+
+<h3>Members</h3>
+<ul class="group_members">
+  <% list = (@company.users-[@company.owner]) %>
+  <% list.each do |user| %>
+      <li><%= profile_link user %></li>
+  <% end %>
+  <% if list.empty? %>
+      <li>No other members.</li>
+  <% end %>
+</ul>

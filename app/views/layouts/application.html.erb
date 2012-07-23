@@ -34,8 +34,11 @@
       <div class="span2">
         <div class="sidebar">
             <% if user_signed_in? %>
-              <% unless @group.nil? %>
+              <% unless @group.nil? || @group.id.nil? %>
                 <%= render "groups/sidebar" %>
+              <% end %>
+              <% unless @company.nil? %>
+                <%=  render "companies/sidebar" %>
               <% end %>
             <% end %>
         </div>

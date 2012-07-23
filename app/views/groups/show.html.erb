@@ -1,1 +1,8 @@
 <h2><%= @group.name %></h2>
+<% gus = GroupsUser.where('group_id = ? AND user_id = ?', @group.id, current_user.id).first %>
+<% unless gus.nil? %>
+  <div class="btn-group">
+    <%= link_to "Join group", join_group_path, method: :put, class: "btn btn-success" %>
+    <%= link_to "Decline invitation", decline_group_path, method: :put, class: "btn btn-danger" %>
+  </div>
+<% end %>
