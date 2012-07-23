@@ -1,3 +1,7 @@
 $('#post_<%= params[:id] %>, #comment_<%= params[:id] %>').slideUp(400, function() {
+    if($('#comment_<%= params[:id] %>').length > 0) {
+        var i = $('#comment_<%= params[:id] %>').parents('.post').find('.comments .count');
+        i.text(parseInt(i.text())-1);
+    }
     $(this).remove();
 });

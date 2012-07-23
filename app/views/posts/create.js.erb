@@ -4,5 +4,9 @@
     $('#post_<%= @post.id %> .message').linkify();
     $('#new_post textarea').val('');
 <% else %>
-
+    $('#post_<%= @post.parent_id %> .comments .count').text(<%= @post.parent.comment_count %>);
+    $('#post_<%= @post.parent_id %> .comments').append('<%= escape_javascript(render @post) %>');
+    $('#comment_<%= @post.id %> .timeago').timeago();
+    $('#comment_<%= @post.id %> .message').linkify();
+    close_comment_form($('#post_<%= @post.parent.id %>'));
 <% end %>

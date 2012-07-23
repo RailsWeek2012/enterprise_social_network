@@ -43,6 +43,9 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @post.parent_id = params[:parent_id]
+    @post.company_id = current_user.company_id
+    @post.user_id = current_user.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -93,8 +96,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @comments = Post.where('parent_id = ?', @post.id)
-    @comments.destroy_all
+    @post.comments.destroy_all
     @post.destroy
 
     respond_to do |format|

@@ -53,6 +53,9 @@ $post_border: 1px solid #D3D3D3;
   }
 
   .comments {
+    .add_comment {
+      display: none;
+    }
     form {
       padding: 4px;
       input {

@@ -1,14 +1,20 @@
-<%= simple_form_for(@post, remote: true) do |f| %>
+<%= simple_form_for(@post, remote: true, html: { id: "new_comment" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :message, as: :text, input_html: { rows: 3 } %>
+    <%= f.hidden_field :parent_id %>
     <%= f.hidden_field :user_id %>
     <%= f.hidden_field :group_id, type: 'hidden' %>
     <%= f.hidden_field :company_id, type: 'hidden' %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <div class="btn-group">
+        <%= f.button :submit %>
+        <%= button_tag "Close", class: "btn", onclick: "close_comment_form($(this).parents('.post'))" do %>
+            <i class="icon-remove"></i>
+        <% end %>
+    </div>
   </div>
 <% end %>
