@@ -132,6 +132,13 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.company.owner != @user
+	    @user.groups.each do |g|
+		    if g.users.count == 1 && g.users.first == @user
+			    g.posts.destroy
+			    g.destroy
+		    end
+	    end
+	    @user.posts.destroy
 	    @user.destroy
     else
 	    redirect_to root_path, alert: "You can't delete your account, while you're the owner of your company."
