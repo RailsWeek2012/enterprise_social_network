@@ -1,6 +1,16 @@
 <div class="post" id="post_<%= post.id %>">
-  <h4 class="name"><%=  post.user %></h4>
-  <div class="message"><%= post.message %></div>
+  <h4 class="name"><%= profile_link post.user %></h4>
+    <% if post.message.length < 300 %>
+      <div class="message">
+        <%= post.message %>
+      </div>
+    <% else %>
+      <div class="message">
+        <%= post.message[0..300] %>...
+      </div>
+      <a class="message_toggle">[ More ]</a>
+      <div class="orig_message"><%= post.message %></div>
+    <% end %>
   <span class="date">
     <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
       <%= post.created_at.to_s %>
@@ -32,8 +42,18 @@
         <% else %>
         <div class="comment comment-hidden" id="comment_<%= comment.id %>">
         <% end %>
-          <h4 class="name"><%=  comment.user %></h4>
-          <div class="message"><%= comment.message %></div>
+          <h4 class="name"><%= profile_link comment.user %></h4>
+        <% if comment.message.length < 300 %>
+          <div class="message">
+            <%= comment.message %>
+          </div>
+        <% else %>
+          <div class="message">
+            <%= comment.message[0..300] %>...
+          </div>
+          <a class="message_toggle">[ More ]</a>
+          <div class="orig_message"><%= comment.message %></div>
+        <% end %>
           <span class="date">
             <abbr class="timeago" title="<%= comment.created_at.getutc.iso8601 %>">
               <%= comment.created_at.to_s %>

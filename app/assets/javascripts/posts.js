@@ -1,7 +1,7 @@
 function prependPost(post) {
     var user = getUser(post.user_id);
     $('#new_post').after('<div class="post" id="post_'+post.id+'">'+
-        '<h4 class="name">'+user.full_name+'</h4>'+
+        '<h4 class="name"><a href="/users/'+user.id+'">'+user.full_name+'</a></h4>'+
         '<div class="message">'+post.message+'</div>'+
         '<span class="date">'+
             '<abbr class="timeago" title="'+post.created_at+'">'+
@@ -9,10 +9,10 @@ function prependPost(post) {
             '</abbr>'+
         '</span>'+
         ' - '+
-        '<span class="comments"><i class="icon-comments-alt"></i> 0 Comments '+
-            '<a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>'+
-            '<a class="btn btn-mini" onclick="editPost($(this).parents(\'.post\'))"><i class="icon-pencil"></i> Edit</a>'+
-            '<a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents(\'.post\'))"><i class="icon-remove"></i> Delete</a>'+
+        '<span class="comments"><i class="icon-comments-alt"></i> 0 Comments'+
+            ' <a class="btn btn-mini add_comment"><i class="icon-comment-alt"></i> Comment</a>'+
+            ' <a class="btn btn-mini" onclick="editPost($(this).parents(\'.post\'))"><i class="icon-pencil"></i> Edit</a>'+
+            ' <a class="btn btn-mini btn-danger" onclick="deletePost($(this).parents(\'.post\'))"><i class="icon-remove"></i> Delete</a>'+
             '<form></form>'+
         '</span>'+
     '</div>');
@@ -37,6 +37,13 @@ function prependPost(post) {
             appendComment(data);
         });
     $('.post:first .timeago').timeago();
+    if(post.message.length > 300) {
+        $('.post:first .message')
+            .html(post.message.substring(0,300)+"...")
+            .after('<a class="message_toggle">[ More ]</a><div class="orig_message">'+post.message+'</div>');
+        initMessageToggle();
+    }
+    $('.post:first .message').linkify();
 }
 
 function editPost(post) {
@@ -135,17 +142,25 @@ function deleteComment(comment) {
 function appendComment(comment) {
     var user = getUser(comment.user_id);
     $('#post_'+comment.parent_id+' .comments').append('<div class="comment" id="comment_'+comment.id+'">'+
-        '<h4 class="name">'+user.full_name+'</h4>'+
+        '<h4 class="name"><a href="/users/'+user.id+'">'+user.full_name+'</a></h4>'+
         '<div class="message">'+comment.message+'</div>'+
         '<span class="date">'+
         '<abbr class="timeago" title="'+comment.created_at+'">'+
             comment.created_at+
         '</abbr>'+
         '</span>'+
-        '<a class="btn btn-mini" onclick="editComment($(this).parents(\'.comment\'))"><i class="icon-pencil"></i> Edit</a>'+
-        '<a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents(\'.comment\'))"><i class="icon-remove"></i> Delete</a>'+
+        ' <a class="btn btn-mini" onclick="editComment($(this).parents(\'.comment\'))"><i class="icon-pencil"></i> Edit</a>'+
+        ' <a class="btn btn-mini btn-danger" onclick="deleteComment($(this).parents(\'.comment\'))"><i class="icon-remove"></i> Delete</a>'+
         '</div>');
     $('#comment_'+comment.id+' .timeago').timeago();
+    if(comment.message.length > 300) {
+        $('#comment_'+comment.id+' .message')
+            .html(comment.message.substring(0,300)+"...")
+            .after('<a class="message_toggle">[ More ]</a><div class="orig_message">'+comment.message+'</div>');
+        initMessageToggle();
+    }
+
+    $('#comment_'+comment.id+' .message').linkify();
 }
 
 function getUser(id) {
@@ -160,6 +175,22 @@ function getUser(id) {
     });
     user.full_name = user.first_name+' '+user.last_name;
     return user;
+}
+
+function initMessageToggle() {
+    $('.message_toggle').toggle(function() {
+        var m = $(this).siblings('.message').html();
+        var s = $(this).siblings('.orig_message').html();
+        $(this).siblings('.message').html(s);
+        $(this).siblings('.orig_message').html(m);
+        $(this).text('[ Less ]');
+    }, function() {
+        var m = $(this).siblings('.message').html();
+        var s = $(this).siblings('.orig_message').html();
+        $(this).siblings('.message').html(s);
+        $(this).siblings('.orig_message').html(m);
+        $(this).text('[ More ]');
+    });
 }
 
 $(function() {
@@ -187,4 +218,6 @@ $(function() {
         $(this).nextAll('.comment-hidden').show();
         $(this).remove();
     });
+
+    initMessageToggle();
 });

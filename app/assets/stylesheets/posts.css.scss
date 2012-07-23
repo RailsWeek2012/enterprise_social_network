@@ -32,6 +32,14 @@ $post_border: 1px solid #D3D3D3;
   .message {
     padding: 4px;
   }
+  .message_toggle {
+    cursor: pointer;
+    display: block;
+  }
+  .orig_message {
+    display: none;
+  }
+
 
   .date {
     padding: 4px;
