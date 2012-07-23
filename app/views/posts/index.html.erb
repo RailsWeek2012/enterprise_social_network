@@ -8,4 +8,4 @@
     <%= submit_tag "Post", class: "btn" %>
 <% end %>
 
-<%= render @posts %>
+<%= render @posts.where('parent_id IS NULL') %>

@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$comment_margin: 10px;
+
 #new_post {
   input {
     display: block;
@@ -26,5 +28,26 @@
 
   .date {
     padding: 4px;
+  }
+
+  .comments {
+    form {
+      input {
+        display: block;
+      }
+    }
+
+    .show_older_comments {
+      margin-left: $comment_margin;
+    }
+
+    .comment {
+      margin-left: $comment_margin;
+      border-left: 1px solid #E2E2E2;
+    }
+
+    .comment-hidden {
+      display: none;
+    }
   }
 }

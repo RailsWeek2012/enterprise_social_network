@@ -1,0 +1,8 @@
+<%= form_tag( '/posts.json', remote: true, class: "new_comment_form", style: "display: none;" ) do %>
+    <%= text_area_tag "post[message]" %>
+    <%= hidden_field_tag "post[parent_id]", @post.id %>
+    <%= hidden_field_tag "post[user_id]", current_user.id %>
+    <%= hidden_field_tag "post[group_id]", @group.id unless @group.nil? %>
+    <%= hidden_field_tag "post[company_id]", current_user.company_id %>
+    <%= submit_tag "Send comment", class: "btn" %>
+<% end %>

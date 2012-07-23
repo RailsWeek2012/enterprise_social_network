@@ -93,4 +93,13 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def render_comment_form
+		@post = Post.find(params[:id])
+		begin
+			@group = Group.find(params[:group])
+		rescue Exception => e
+		end
+		render partial: "comment_form"
+	end
 end

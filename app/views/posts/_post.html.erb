@@ -1,9 +1,41 @@
-<div class="post">
+<div class="post" id="post_<%= post.id %>">
   <h4 class="name"><%=  post.user %></h4>
   <div class="message"><%= post.message %></div>
-  <div class="date">
+  <span class="date">
     <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
       <%= post.created_at.to_s %>
     </abbr>
-  </div>
+  </span>
+  -
+  <% @comments = Post.where('parent_id = ?', post.id).order('created_at') %>
+  <span class="comments">
+    <%= Post.where('parent_id = ?', post.id).count %> Comments
+    <a class="btn btn-mini add_comment">Comment</a>
+    <%= form_tag( '/posts.json', remote: true, class: "new_comment_form", style: "display: none;" ) do %>
+        <%= text_area_tag "post[message]" %>
+        <%= hidden_field_tag "post[parent_id]", post.id %>
+        <%= hidden_field_tag "post[user_id]", current_user.id %>
+        <%= hidden_field_tag "post[group_id]", params[:group] %>
+        <%= hidden_field_tag "post[company_id]", current_user.company_id %>
+        <%= submit_tag "Send comment", class: "btn" %>
+    <% end %>
+    <% if @comments.count > 2 %>
+        <div class="show_older_comments"><a class="btn">Show older comments</a></div>
+    <% end %>
+    <% @comments.each do |comment| %>
+        <% if @comments.index(comment) > @comments.count-4 %>
+        <div class="comment" id="comment_<%= comment.id %>">
+        <% else %>
+        <div class="comment comment-hidden" id="comment_<%= comment.id %>">
+        <% end %>
+          <h4 class="name"><%=  comment.user %></h4>
+          <div class="message"><%= comment.message %></div>
+          <span class="date">
+            <abbr class="timeago" title="<%= comment.created_at.getutc.iso8601 %>">
+              <%= comment.created_at.to_s %>
+            </abbr>
+          </span>
+        </div>
+    <% end %>
+  </span>
 </div>
