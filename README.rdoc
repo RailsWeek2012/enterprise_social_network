@@ -3,10 +3,10 @@
 Here grows a new enterprise social network build to bundle your employees communication in to one place. Easily.
 
 == Used Software
-Ruby on Rails
-Authlogic
-Twitter Bootstrap
-GravatarImageTag
-SimpleForm
-GON
-Font-Awesome
+* [Ruby on Rails](https://github.com/rails/rails "Ruby on Rails@Github")
+* [Authlogic](https://github.com/binarylogic/authlogic/ "Authlogic@Github")
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/index.html "Twitter Bootstrap Homepage")
+* [gravatar_image_tag](https://github.com/mdeering/gravatar_image_tag/ "gravatar_image_tag@Github")
+* [simple_form](https://github.com/plataformatec/simple_form/ "simple_form@Github")
+* [gon](https://github.com/gazay/gon "gon@Github")
+* [Font-Awesome](http://fortawesome.github.com/Font-Awesome/ "Font-Awesome Homepage")
