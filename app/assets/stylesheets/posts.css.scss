@@ -46,8 +46,15 @@ $post_border: 1px solid #D3D3D3;
     background-color: #DFDFDF;
   }
 
+  .actions {
+    float: right;
+    margin: 2px;
+  }
+
   .message {
     padding: 4px;
+    max-height: 100px;
+    overflow: hidden;
 
     textarea {
       width: 100%;

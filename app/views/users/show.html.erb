@@ -9,6 +9,9 @@
   <% end %>
 </div>
 <div class="well profile">
+    <% if @user == @user.company.owner %>
+        <div class="owner" title="Owner"><i class="icon-star"></i></div>
+    <% end %>
     <div class="image">
       <%= gravatar_image_tag(@user.email, alt: @user.full_name, gravatar: { size: 100 }) %>
     </div>

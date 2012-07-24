@@ -1,16 +1,21 @@
 <% if post.parent_id.nil? %>
     <div class="post" id="post_<%= post.id %>">
       <h4 class="name"><%= profile_link post.user %></h4>
-        <% if post.message.length < 300 %>
+      <% if post.user_id == current_user.id %>
+          <div class="actions">
+          <%= link_to edit_post_path(post), remote: true, class: "btn btn-mini" do  %>
+              <i class="icon-pencil"></i> Edit
+          <% end %>
+          <%= link_to post_path(post), remote: true, method: :delete, class: "btn btn-mini btn-danger", confirm: "Do you really want to delete this post and all its comments?" do %>
+              <i class="icon-remove"></i> Delete
+          <% end %>
+          </div>
+      <% end %>
           <div class="message">
             <%= simple_format post.message %>
           </div>
-        <% else %>
-          <div class="message">
-            <%= simple_format post.message[0..300] %>...
-          </div>
+        <% if post.message.length > 300 %>
           <a class="message_toggle">[ More ]</a>
-          <div class="orig_message"><%= post.message %></div>
         <% end %>
       <span class="date">
         <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
@@ -23,14 +28,6 @@
         <i class="icon-comments-alt"></i> <span class="count"><%= post.comment_count %></span> Comments
         <%= link_to new_post_path(parent_id: post.id), remote: true, class: "btn btn-mini" do %>
             <i class="icon-comment-alt"></i> Comment
-        <% end %>
-        <% if post.user_id == current_user.id %>
-            <%= link_to edit_post_path(post), remote: true, class: "btn btn-mini" do  %>
-                <i class="icon-pencil"></i> Edit
-            <% end %>
-            <%= link_to post_path(post), remote: true, method: :delete, class: "btn btn-mini btn-danger", confirm: "Do you really want to delete this post and all its comments?" do %>
-                <i class="icon-remove"></i> Delete
-            <% end %>
         <% end %>
         <div class="add_comment"></div>
         <% if @comments.count > 3 %>

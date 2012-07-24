@@ -1,7 +1,7 @@
 <% if @post.parent_id.nil? %>
     $('#new_post').after('<%= escape_javascript(render @post) %>');
     $('#post_<%= @post.id %> .timeago').timeago();
-    $('#post_<%= @post.id %> .message').linkify();
+    $('#post_<%= @post.id %> .message').data('message', '<% escape_javascript(@post.message) %>').linkify();
     $('#new_post textarea').val('');
 <% else %>
     $('#post_<%= @post.parent_id %> .comments .count').text(<%= @post.parent.comment_count %>);
@@ -10,3 +10,4 @@
     $('#comment_<%= @post.id %> .message').linkify();
     close_comment_form($('#post_<%= @post.parent.id %>'));
 <% end %>
+initMessageToggle();
