@@ -18,4 +18,19 @@ class Post < ActiveRecord::Base
 	def parent
 		Post.find(self.parent_id)
 	end
+
+	def contains_link?
+		url = URI.extract(self.message)
+		url.length > 0
+	end
+
+	def extract_link
+		URI.extract(self.message).first
+	end
+
+	def get_link_infos
+		agent = Mechanize.new
+		agent.get(self.extract_link)
+		agent
+	end
 end

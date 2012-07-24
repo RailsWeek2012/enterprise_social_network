@@ -43,3 +43,5 @@ gem 'authlogic'
 gem 'simple_form'
 gem 'gon'
 gem 'gravatar_image_tag'
+gem 'mechanize'
+

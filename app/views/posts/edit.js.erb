@@ -5,4 +5,5 @@ $('#comment_<%= @post.id %> .message, #post_<%= @post.id %> .message').html(
             'height': 'auto',
             'maxHeight': 'none'
         });
+$('#comment_<%= @post.id %> .preview, #post_<%= @post.id %> .preview').hide();
 $('#comment_<%= @post.id %> .message_toggle, #post_<%= @post.id %> .message_toggle').hide();

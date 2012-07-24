@@ -58,6 +58,19 @@ $post_border: 1px solid #D3D3D3;
     }
   }
 
+  .preview {
+    float: left;
+    margin-right: 10px;
+    max-width: 200px;
+    padding: 4px;
+
+    img {
+      display: block;
+      max-width: 120px;
+      max-height: 100px;
+    }
+  }
+
   .message {
     padding: 4px;
     max-height: 100px;

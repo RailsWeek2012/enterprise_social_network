@@ -11,12 +11,22 @@
           <% end %>
           </div>
       <% end %>
+          <% if post.contains_link? && url_preview(post).length > 0 %>
+            <div class="preview">
+              <%= link_to post.extract_link do %>
+                  <%= url_preview(post).html_safe %>
+              <% end %>
+            </div>
+          <% end %>
           <div class="message">
             <%= simple_format post.message %>
           </div>
         <% if post.message.length > 300 %>
           <a class="message_toggle">[ More ]</a>
         <% end %>
+      <% if post.contains_link? %>
+        <br style="clear: left;" />
+      <% end %>
       <span class="date">
         <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
           <%= post.created_at.to_s %>

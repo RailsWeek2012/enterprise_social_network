@@ -1,1 +1,6 @@
 $('#comment_<%= @post.id %> .message, #post_<%= @post.id %> .message').html('<%= escape_javascript(simple_format(@post.message)) %>').linkify();
+<% if @post.contains_link? %>
+    $('#comment_<%= @post.id %> .preview, #post_<%= @post.id %> .preview')
+            .html('<%= escape_javascript(url_preview(@post)) %>')
+            .show();
+<% end %>
