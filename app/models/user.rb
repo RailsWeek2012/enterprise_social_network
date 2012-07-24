@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :groups_users
   has_many :groups, through: :groups_users
   has_many :posts
+  has_many :likes
 
 	validates :email, :first_name, :last_name, presence: true
 

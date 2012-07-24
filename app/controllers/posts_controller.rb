@@ -1,4 +1,26 @@
 class PostsController < ApplicationController
+	def like
+		l = Like.create({user_id: current_user.id, post_id: params[:id]})
+
+		@post = Post.find(params[:id])
+
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def unlike
+		l = Like.where('user_id = ? AND post_id = ?', current_user.id, params[:id])
+		l.destroy_all
+
+		@post = Post.find(params[:id])
+
+		respond_to do |format|
+			format.html { redirect_to root_path }
+			format.js
+		end
+	end
+
   # GET /posts
   # GET /posts.json
   def index

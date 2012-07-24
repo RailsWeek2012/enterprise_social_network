@@ -1,6 +1,10 @@
 EnterpriseSocialNetwork::Application.routes.draw do
+  resources :likes
+
   resources :infos
 
+  post "posts/:id/like" => "posts#like", as: "like_post"
+  post "posts/:id/unlike" => "posts#unlike", as: "unlike_post"
 	get "posts/render_comment_form" => "posts#render_comment_form"
 
   resources :posts

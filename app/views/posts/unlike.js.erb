@@ -1,0 +1,2 @@
+$('#post_<%= @post.id %> > .likes .count, #comment_<%= @post.id %> > .likes .count').text('<%= @post.likes.count %>');
+$('#post_<%= @post.id %> > .likes a, #comment_<%= @post.id %> > .likes a').replaceWith('<%= like_button @post %>');

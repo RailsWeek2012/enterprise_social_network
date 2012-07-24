@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :group
+  has_many :likes
 
   validates :message, :user_id, :company_id, presence: true
 
