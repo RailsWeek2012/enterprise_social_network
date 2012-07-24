@@ -10,7 +10,7 @@
 </div>
 <div class="well profile">
     <div class="image">
-      <%= gravatar_image_tag(@user.email, alt: @user.full_name) %>
+      <%= gravatar_image_tag(@user.email, alt: @user.full_name, gravatar: { size: 100 }) %>
     </div>
     <p>
       <b>First name:</b>
