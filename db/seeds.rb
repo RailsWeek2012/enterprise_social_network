@@ -58,3 +58,5 @@ comments = Post.create([
 groups = Group.create([
            { name: 'Chefetage', leader: ms.owner }
          ])
+
+GroupsUser.create({user_id: ms.owner.id, group_id: groups.first.id, status: 1})

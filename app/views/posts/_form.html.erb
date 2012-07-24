@@ -12,7 +12,7 @@
   <div class="form-actions">
     <div class="btn-group">
         <%= f.button :submit %>
-        <%= content_tag(:a, class: "btn", onclick: "close_comment_form($(this).parents('.post'))") do %>
+        <%= content_tag(:a, class: "btn", title: "Cancel", onclick: "close_comment_form($(this).parents('.post'))") do %>
             <i class="icon-remove"></i>
         <% end %>
     </div>
