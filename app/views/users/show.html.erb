@@ -1,5 +1,12 @@
 <div class="btn-group actions">
-  <%= back_to_users %>
+  <%=  link_to users_path, class: "btn" do %>
+    <i class="icon-chevron-left"></i> Members
+  <% end %>
+  <% if current_user == @user %>
+    <%=  link_to edit_user_path(@user), class: "btn" do %>
+      <i class="icon-pencil"></i> Edit
+    <% end %>
+  <% end %>
 </div>
 <div class="well profile">
     <div class="image">

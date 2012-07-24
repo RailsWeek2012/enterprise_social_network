@@ -28,12 +28,22 @@ $post_border: 1px solid #D3D3D3;
     padding: 4px;
     background-color: #EFEFEF;
 
+    transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+
+    font-size: 20px;
     .image {
       img {
         max-width: 45px;
         max-height: 45px;
       }
     }
+  }
+
+  .name:hover {
+    background-color: #DFDFDF;
   }
 
   .message {

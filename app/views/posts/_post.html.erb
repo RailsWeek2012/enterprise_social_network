@@ -1,6 +1,6 @@
 <% if post.parent_id.nil? %>
     <div class="post" id="post_<%= post.id %>">
-      <h4 class="name"><span class="image"><%= gravatar_image_tag(post.user.email, alt: post.user.full_name) %></span> <%= profile_link post.user %></h4>
+      <h4 class="name"><%= profile_link post.user %></h4>
         <% if post.message.length < 300 %>
           <div class="message">
             <%= simple_format post.message %>
@@ -46,7 +46,7 @@
     <% else %>
         <div class="comment comment-hidden" id="comment_<%= post.id %>">
     <% end %>
-    <h4 class="name"><span class="image"><%= gravatar_image_tag(post.user.email, alt: post.user.full_name) %></span> <%= profile_link post.user %></h4>
+    <h4 class="name"><%= profile_link post.user %></h4>
     <% if post.message.length < 300 %>
         <div class="message">
           <%= simple_format post.message %>

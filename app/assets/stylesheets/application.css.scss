@@ -11,6 +11,10 @@
  *= require_self
  *= require_tree .
  */
+
+$gridColumnWidth: 60;
+$gridColumns: 16;
+
 @import "bootstrap";
 @import "font-awesome";
 
@@ -18,8 +22,24 @@ body {
   padding-top: 60px;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .menu {
-  padding-right: 10px;
+  padding-right: 0px;
+
+  a {
+    display: block;
+  }
+  a:hover {
+    background-color: #DFDFDF;
+    text-decoration: none;
+  }
+
+  h3 {
+    padding: 4px;
+  }
 }
 
 $content_border: 1px solid #999;

@@ -5,9 +5,25 @@
 .profile {
   .image {
     float: left;
+    img {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   p {
     margin-left: 95px;
   }
+}
+
+.profile-link {
+  display: block;
+  transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+}
+.profile-link:hover {
+  background-color: #DFDFDF;
+  text-decoration: none;
 }

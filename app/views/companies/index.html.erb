@@ -4,12 +4,14 @@
   <thead>
       <tr>
         <th>Name</th>
+        <th>Members</th>
       </tr>
   </thead>
   <tbody>
     <% @companies.each do |company| %>
       <tr>
         <td><%= company_link company %></td>
+        <td><%= company.users.count %></td>
       </tr>
     <% end %>
   </tbody>
