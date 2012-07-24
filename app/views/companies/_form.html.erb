@@ -4,6 +4,23 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.association :owner, collection: @company.users %>
+    <%= f.label :infos %>
+    <table class="table table-condensed">
+      <thead>
+      </thead>
+      <tbody>
+        <% @company.infos.each do |i| %>
+            <tr>
+              <td><%= i.key %></td>
+              <% if i.key == "Description" %>
+                <td><%= text_area_tag(i.key, i.value, rows: 3) %></td>
+              <% else %>
+                <td><%= text_field_tag(i.key, i.value) %></td>
+              <% end %>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="form-actions">

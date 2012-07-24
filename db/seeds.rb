@@ -9,6 +9,27 @@
 
 companies = Company.create([{ name: 'Sicromoft'} , { name: 'Mun Sicrosystems' }])
 
+[
+	{key: "Headquarters", value: "Redmond, Washington"},
+	{key: "Year of foundation", value: "1975"},
+	{key: "Industry", value: "IT"},
+	{key: "Description", value: "Bad-Ass IT company"}
+].each do |i|
+	x = Info.create(key: i[:key], value: i[:value])
+	companies.first.infos.push(x)
+end
+companies.first.save
+[
+	{key: "Headquarters", value: "Santa Clara, California"},
+	{key: "Year of foundation", value: "1982"},
+	{key: "Industry", value: "IT"},
+	{key: "Description", value: "Swallowed by Oracle"}
+].each do |i|
+	x = Info.create(key: i[:key], value: i[:value])
+	companies.last.infos.push(x)
+end
+companies.last.save
+
 ms = companies.first
 sm = companies.last
 

@@ -1,4 +1,6 @@
 EnterpriseSocialNetwork::Application.routes.draw do
+  resources :infos
+
 	get "posts/render_comment_form" => "posts#render_comment_form"
 
   resources :posts

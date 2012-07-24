@@ -8,12 +8,28 @@
     </p>
     <p>
       <b>Owner:</b>
-      <%= link_to @company.owner do %>
-      <%= @company.owner.full_name %>
+      <% if current_user && current_user.company == @company %>
+          <%= link_to @company.owner do %>
+          <%= @company.owner.full_name %>
+          <% end %>
+      <% else %>
+        <%= @company.owner.full_name %>
       <% end %>
     </p>
     <p>
       <b>Members:</b>
       <%= User.where('company_id = ?', @company.id).size %>
     </p>
+    <% @company.infos.each do |i| %>
+        <% unless i.value.empty? %>
+        <p>
+          <b><%= i.key %>:</b>
+          <% if i.key == "Description" %>
+            <%= simple_format i.value %>
+          <% else %>
+            <%= i.value %>
+          <% end %>
+        </p>
+        <% end %>
+    <% end %>
 </div>

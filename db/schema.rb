@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723125901) do
+ActiveRecord::Schema.define(:version => 20120724080247) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20120723125901) do
   end
 
   add_index "groups_users", ["group_id", "user_id"], :name => "index_groups_users_on_group_id_and_user_id"
+
+  create_table "infos", :force => true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "company_id"
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "message"

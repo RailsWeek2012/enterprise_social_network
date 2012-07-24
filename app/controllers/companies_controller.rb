@@ -46,6 +46,7 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(params[:company])
+    @company.create_default_infos
 
     respond_to do |format|
       if @company.save
@@ -62,6 +63,11 @@ class CompaniesController < ApplicationController
   # PUT /companies/1.json
   def update
     @company = Company.find(params[:id])
+
+    @company.infos.each do |i|
+	    i.value = params[i.key]
+	    i.save
+    end
 
     respond_to do |format|
       if @company.update_attributes(params[:company])

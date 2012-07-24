@@ -1,6 +1,7 @@
 <div class="btn-group actions">
-  <%= link_show_company(@company) %>
-  <%= back_to_companies %>
+  <%= link_to company_path, class: "btn" do %>
+    <i class="icon-chevron-left"></i> Back
+  <% end %>
 </div>
 <h1>Editing company</h1>
 
