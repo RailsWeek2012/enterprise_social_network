@@ -10,3 +10,4 @@ Here grows a new enterprise social network build to bundle your employees commun
 * simple_form https://github.com/plataformatec/simple_form "simple_form@Github"
 * gon https://github.com/gazay/gon "gon@Github"
 * Font-Awesome http://fortawesome.github.com/Font-Awesome "Font-Awesome Homepage"
+* Mechanize http://mechanize.rubyforge.org/ "Mechanize Homepage"
