@@ -49,6 +49,13 @@ $post_border: 1px solid #D3D3D3;
   .actions {
     float: right;
     margin: 2px;
+
+    .btn {
+      opacity: 0.5;
+    }
+    .btn:hover {
+      opacity: 1;
+    }
   }
 
   .message {

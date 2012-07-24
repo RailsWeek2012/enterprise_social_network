@@ -40,7 +40,7 @@ function close_comment_form(div) {
             $(this).empty();
         });
     } else {
-        div.find('.message').css('height', '100').html(div.data('message'));
+        div.find('.message').css('maxHeight', '100').html(div.data('message'));
         div.find('.message_toggle').show();
     }
 }

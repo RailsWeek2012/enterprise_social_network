@@ -1,5 +1,8 @@
 $('#comment_<%= @post.id %> .message, #post_<%= @post.id %> .message').html(
         '<%= escape_javascript(
                 render(partial: 'posts/form')
-        ) %>').css('height', 'auto');
+        ) %>').css({
+            'height': 'auto',
+            'maxHeight': 'none'
+        });
 $('#comment_<%= @post.id %> .message_toggle, #post_<%= @post.id %> .message_toggle').hide();

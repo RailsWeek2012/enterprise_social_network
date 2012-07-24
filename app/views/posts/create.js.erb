@@ -10,4 +10,5 @@
     $('#comment_<%= @post.id %> .message').linkify();
     close_comment_form($('#post_<%= @post.parent.id %>'));
 <% end %>
+$('#post_<%= @post.id %>').data('message', $('#post_<%= @post.id %>').find('.message').html());
 initMessageToggle();
