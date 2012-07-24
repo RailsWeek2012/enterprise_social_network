@@ -1,7 +1,10 @@
 <div class="btn-group actions">
   <%= back_to_users %>
 </div>
-<div class="well">
+<div class="well profile">
+    <div class="image">
+      <%= gravatar_image_tag(@user.email, alt: @user.full_name) %>
+    </div>
     <p>
       <b>First name:</b>
       <%= @user.first_name %>
@@ -19,8 +22,6 @@
 
     <p>
       <b>Company:</b>
-      <%= link_to @user.company do %>
-          <%= @user.company.name %>
-      <% end %>
+      <%= company_link @user.company %>
     </p>
 </div>

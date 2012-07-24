@@ -3,7 +3,7 @@
   <% @groups.each do |group| %>
       <% gu = GroupsUser.where('group_id = ? AND user_id = ? AND status = 1', group.id, current_user.id) %>
       <% if gu.count > 0 %>
-        <li><a href="/posts?group=<%= group.id %>"><%= group.name %></a></li>
+        <li><a href="/posts?group=<%= group.id %>"><i class="icon-group"></i> <%= group.name %></a></li>
       <% end %>
   <% end %>
   <li>

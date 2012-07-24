@@ -15,10 +15,17 @@
 
     a {
       display: block;
-      padding: 2px;
+      padding: 4px;
+      text-decoration: none;
+
+      transition-duration: 0.4s;
+      -o-transition-duration: 0.4s;
+      -moz-transition-duration: 0.4s;
+      -webkit-transition-duration: 0.4s;
     }
     a:hover {
-      background-color: #EFEFEF;
+      text-decoration: none;
+      background-color: #DFDFDF;
     }
   }
 }

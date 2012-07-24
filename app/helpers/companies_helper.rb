@@ -3,8 +3,8 @@ module CompaniesHelper
 		link_to "Back", companies_path, class: "btn"
 	end
 
-	def link_show_company(company)
-		link_to "Show", company, class: "btn"
+	def company_link(company)
+		link_to company.name, company
 	end
 
 	def link_edit_company(company)

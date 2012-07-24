@@ -27,6 +27,13 @@ $post_border: 1px solid #D3D3D3;
     border-radius: 4px 4px 0px 0px;
     padding: 4px;
     background-color: #EFEFEF;
+
+    .image {
+      img {
+        max-width: 45px;
+        max-height: 45px;
+      }
+    }
   }
 
   .message {
