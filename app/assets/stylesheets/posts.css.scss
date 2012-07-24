@@ -63,12 +63,18 @@ $post_border: 1px solid #D3D3D3;
     margin-right: 10px;
     max-width: 200px;
     padding: 4px;
+    margin: 4px;
+    border: 1px solid #FFF;
 
     img {
       display: block;
       max-width: 120px;
       max-height: 100px;
     }
+  }
+
+  .preview:hover {
+    border: 1px solid #DFDFDF;
   }
 
   .message {

@@ -17,9 +17,13 @@ module PostsHelper
 			result = ""
 			li = post.get_link_infos
 			result += image_tag(li.page.images.first) if li.page.images.length > 0
-	    result += content_tag(:b, li.page.title)
+	    result += content_tag(:b, li.page.title[0..50]+(li.page.title.length > 50 ? "...":""))
 		rescue Exception => e
 			result = ""
 		end
+		result = link_to post.extract_link, target: "_blank" do
+			result.html_safe
+		end
+		result.html_safe
 	end
 end

@@ -13,9 +13,7 @@
       <% end %>
           <% if post.contains_link? && url_preview(post).length > 0 %>
             <div class="preview">
-              <%= link_to post.extract_link do %>
-                  <%= url_preview(post).html_safe %>
-              <% end %>
+              <%= url_preview(post) %>
             </div>
           <% end %>
           <div class="message">
@@ -24,7 +22,7 @@
         <% if post.message.length > 300 %>
           <a class="message_toggle">[ More ]</a>
         <% end %>
-      <% if post.contains_link? %>
+      <% if post.contains_link? && url_preview(post).length > 0 %>
         <br style="clear: left;" />
       <% end %>
       <span class="date">
@@ -69,16 +67,19 @@
         <% end %>
         </div>
     <% end %>
-    <% if post.message.length < 300 %>
-        <div class="message">
-          <%= simple_format post.message %>
+    <% if post.contains_link? && url_preview(post).length > 0 %>
+        <div class="preview">
+          <%= url_preview(post) %>
         </div>
-    <% else %>
-        <div class="message">
-          <%= simple_format post.message[0..300] %>...
-        </div>
+    <% end %>
+    <div class="message">
+      <%= simple_format post.message %>
+    </div>
+    <% if post.message.length > 300 %>
         <a class="message_toggle">[ More ]</a>
-        <div class="orig_message"><%= post.message %></div>
+    <% end %>
+    <% if post.contains_link? && url_preview(post).length > 0 %>
+        <br style="clear: left;" />
     <% end %>
     <span class="date">
         <abbr class="timeago" title="<%= post.created_at.getutc.iso8601 %>">
