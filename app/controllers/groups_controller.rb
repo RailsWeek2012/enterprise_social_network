@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
 
   def join
 	  if user_signed_in?
-		  gu = GroupsUser.where('group_id = ? AND user_id = ? AND status = 0', params[:id], current_user.id).first
+		  gu = GroupsUser.open_group_invitation(params[:id], current_user.id)
 		  if gu.update_attribute(:status, 1)
 			  redirect_to "/posts?group="+params[:id]
 		  end
@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
 
   def decline
 	  if user_signed_in?
-		  gu = GroupsUser.where('group_id = ? AND user_id = ? AND status = 0', params[:id], current_user.id).first
+		  gu = GroupsUser.open_group_invitation(params[:id], current_user.id)
 		  if gu.update_attribute(:status, 2)
 			  redirect_to root_path
 		  end
