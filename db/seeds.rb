@@ -50,6 +50,11 @@ posts = Post.create([
 					{ message: 'Wie die abgehen bei $M...\nZum Kopfschütteln!', user_id: users[1], company_id: sm.id }
         ])
 
+comments = Post.create([
+             { message: 'Du sagst es...', user_id: users[2].id, company_id: ms.id, parent_id: posts[0].id },
+						 { message: '*kopfschüttel*', user_id: users[3].id, company_id: sm.id, parent_id: posts[1].id }
+           ])
+
 groups = Group.create([
            { name: 'Chefetage', leader: ms.owner }
          ])

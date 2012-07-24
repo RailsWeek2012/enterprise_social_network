@@ -37,7 +37,7 @@
               <% unless @group.nil? || @group.id.nil? %>
                 <%= render "groups/sidebar" %>
               <% end %>
-              <% unless @company.nil? %>
+              <% unless @company.nil? || @company != current_user.company %>
                 <%=  render "companies/sidebar" %>
               <% end %>
             <% end %>
