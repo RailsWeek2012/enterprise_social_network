@@ -1,5 +1,13 @@
 <h2><%= params[:group].nil? ? "Mainstream" : Group.find(params[:group]).name %></h2>
-
+<script type="text/javascript">
+$(function() {
+    $('#new_post').submit(function() {
+        $(this).block({
+            message: '<h1>Loading...</h1>'
+        });
+    });
+});
+</script>
 <%= form_tag( '/posts', remote: true, id: "new_post" ) do %>
     <%= text_area_tag "post[message]" %>
     <%= hidden_field_tag "post[user_id]", current_user.id %>

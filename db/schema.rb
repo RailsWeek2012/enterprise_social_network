@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724110017) do
+ActiveRecord::Schema.define(:version => 20120725072510) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120724110017) do
     t.datetime "updated_at", :null => false
     t.integer  "company_id"
     t.integer  "parent_id"
+    t.string   "image_url"
   end
 
   create_table "reservations", :force => true do |t|

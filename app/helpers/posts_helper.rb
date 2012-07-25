@@ -16,7 +16,8 @@ module PostsHelper
 		begin
 			result = ""
 			li = post.get_link_infos
-			result += image_tag(li.page.images.first) if li.page.images.length > 0
+			post.image_url.nil? ? url = li.page.images.first : url = post.image_url
+			result += image_tag(url)
 	    result += content_tag(:b, li.page.title[0..50]+(li.page.title.length > 50 ? "...":""))
 		rescue Exception => e
 			result = ""

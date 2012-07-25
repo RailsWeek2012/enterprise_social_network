@@ -11,7 +11,7 @@
           <% end %>
           </div>
       <% end %>
-          <% if post.contains_link? && url_preview(post).length > 0 %>
+          <% if post.has_preview? %>
             <div class="preview">
               <%= url_preview(post) %>
             </div>
@@ -67,7 +67,7 @@
         <% end %>
         </div>
     <% end %>
-    <% if post.contains_link? && url_preview(post).length > 0 %>
+    <% if post.has_preview? %>
         <div class="preview">
           <%= url_preview(post) %>
         </div>

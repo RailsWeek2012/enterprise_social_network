@@ -1,3 +1,45 @@
+<%
+if @post.contains_link?
+    if @post.extract_images.length > 0
+        %>
+        $('body').append('<div class="image_chooser"><h1>Choose an image</h1><div class="images"></div></div>');
+        $('.image_chooser').css({
+            'height': $(document).height()
+        });
+        $('.image_chooser .images').css({
+            'width': 0.7*$(window).width()
+        });
+        <%
+        @post.extract_images.each do |u|
+            %>
+            $('.image_chooser .images').append('<div class="image"><img src="<%= u %>" /></div>');
+            <%
+        end
+        %>
+        $('.image_chooser .images .image').click(function() {
+            var image_url = $(this).find('img').attr("src");
+            $.ajax({
+                url: '/posts/<%= @post.id %>/set_image_url',
+                type: 'PUT',
+                data: {
+                    'image_url': image_url
+                },
+                success: function() {
+                    $('#post_<%= @post.id %> .preview img, #comment_<%= @post.id %> .preview img').attr("src", image_url);
+                    $('.image_chooser').remove();
+                }
+            });
+        });
+        <%
+    else
+        @post.update_attribute(:image_url, nil)
+        %>
+        $('#post_<%= @post.id %> .preview, #comment_<%= @post.id %> .preview').remove();
+        <%
+    end
+end
+%>
+$('#new_post').unblock();
 <% if @post.parent_id.nil? %>
     $('#new_post').after('<%= escape_javascript(render @post) %>');
     $('#post_<%= @post.id %> .timeago').timeago();

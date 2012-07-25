@@ -19,6 +19,10 @@ class Post < ActiveRecord::Base
 		Post.find(self.parent_id)
 	end
 
+  def has_preview?
+	  self.contains_link? && self.image_url?
+  end
+
 	def contains_link?
 		url = URI.extract(self.message)
 		url.length > 0
@@ -27,6 +31,14 @@ class Post < ActiveRecord::Base
 	def extract_link
 		URI.extract(self.message).first
 	end
+
+  def extract_images
+	  begin
+	    self.get_link_infos.page.image_urls
+	  rescue Exception => e
+		  []
+		end
+  end
 
 	def get_link_infos
 		agent = Mechanize.new
