@@ -11,7 +11,8 @@ class Company < ActiveRecord::Base
 	def create_default_infos
 		["Headquarters", "Year of foundation", "Industry", "Description"].each do |i|
 			x = Info.create(key: i, value: "")
-			infos.push(x)
+			self.infos.push(x)
 		end
+		self.save
 	end
 end

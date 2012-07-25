@@ -99,6 +99,7 @@ class UsersController < ApplicationController
 	      if params[:reservation].nil?
 	        @company.owner = @user
 	        @company.save
+	        @company.create_default_infos
 	        @user.company = @company
 	      end
 	      @user.save

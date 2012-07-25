@@ -46,8 +46,8 @@ sm.owner = users[1]
 sm.save
 
 posts = Post.create([
-          { message: 'Alter, die Spinnen die bei Mun!!! *rage rage rage*', user_id: users.first, company_id: ms.id },
-					{ message: 'Wie die abgehen bei $M...\nZum Kopfschütteln!', user_id: users[1], company_id: sm.id }
+          { message: 'Alter, die Spinnen die bei Mun!!! *rage rage rage*', user_id: users.first.id, company_id: ms.id },
+					{ message: 'Wie die abgehen bei $M...\nZum Kopfschütteln!', user_id: users[1].id, company_id: sm.id }
         ])
 
 comments = Post.create([
