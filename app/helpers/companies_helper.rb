@@ -8,6 +8,8 @@ module CompaniesHelper
 	end
 
 	def link_edit_company(company)
-		link_to "Edit", edit_company_path(company), class: "btn" if current_user == company.owner
+		if current_user == company.owner
+			link_to(content_tag(:i, nil, class: "icon-pencil")+" Edit", edit_company_path(company), class: "btn")
+		end
 	end
 end
