@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
 	validates :name, presence: true
 
 	def create_default_infos
+		# creates default infos for company
 		["Headquarters", "Year of foundation", "Industry", "Description"].each do |i|
 			x = Info.create(key: i, value: "")
 			self.infos.push(x)

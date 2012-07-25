@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def invite
 	  if user_signed_in?
+		  # invites user to group
 		  @group = Group.find(params[:group])
 		  @user = User.find(params[:user])
 
@@ -24,6 +25,7 @@ class GroupsController < ApplicationController
 
   def join
 	  if user_signed_in?
+		  # user joins group
 		  gu = GroupsUser.open_group_invitation(params[:id], current_user.id)
 		  if gu.update_attribute(:status, 1)
 			  redirect_to "/posts?group="+params[:id]
@@ -33,6 +35,7 @@ class GroupsController < ApplicationController
 
   def decline
 	  if user_signed_in?
+		  # user declines group invitation
 		  gu = GroupsUser.open_group_invitation(params[:id], current_user.id)
 		  if gu.update_attribute(:status, 2)
 			  redirect_to root_path
@@ -59,6 +62,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.json
   def new
+	  # set current user to group leader (necessary for form)
     @group = Group.new
     @group.leader = current_user
     @group.users.push current_user
@@ -78,6 +82,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    # set current user to group leader (necessary if manipulated)
     @group.leader = current_user
 
     respond_to do |format|

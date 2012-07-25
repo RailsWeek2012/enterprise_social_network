@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
 	end
 
   def has_preview?
+	  # check if post message contains link and image_url is set
 	  self.contains_link? && self.image_url?
   end
 
@@ -29,10 +30,12 @@ class Post < ActiveRecord::Base
 	end
 
 	def extract_link
+		# extracts first link in message
 		url = URI.extract(self.message, ["http", "https", "ftp"]).first
 	end
 
   def extract_images
+	  # extracts image urls from external link (img-tags only)
 	  begin
 	    self.get_link_infos.page.image_urls
 	  rescue Exception => e
@@ -46,7 +49,7 @@ class Post < ActiveRecord::Base
 		agent
 	end
 
-	def self.get_group_posts company_id, group_id
-		Post.where('company_id = ? AND group_id = ?', company_id, group_id).order('created_at DESC')
+	def self.get_group_posts group_id
+		Post.where('group_id = ?', company_id, group_id).order('created_at DESC')
 	end
 end

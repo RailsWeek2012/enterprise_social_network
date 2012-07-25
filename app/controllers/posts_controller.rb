@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 	end
 
 	def unlike
+		# remove existing like
 		l = Like.where('user_id = ? AND post_id = ?', current_user.id, params[:id])
 		l.destroy_all
 
@@ -35,11 +36,13 @@ class PostsController < ApplicationController
   def index
 	  if user_signed_in?
 		  if params[:group].nil?
+			  # get all company posts in mainstream
 			  @posts = PostsHelper.get_all_posts current_user.company_id
 		  else
+			  # get group specific posts
 			  @group = Group.find(params[:group])
 			  if current_user.groups.include? @group
-			    @posts = Post.get_group_posts(current_user.company_id, params[:group])
+			    @posts = Post.get_group_posts(params[:group])
 			  else
 				  redirect_to root_path
 				  return
@@ -129,6 +132,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+	  #delete post and all its comments
     @post = Post.find(params[:id])
     @post.comments.destroy_all
     @post.destroy
@@ -140,8 +144,10 @@ class PostsController < ApplicationController
   end
 
 	def render_comment_form
+		# renders form for comment
 		@post = Post.find(params[:id])
 		begin
+			# group param is not necessary, if not set: post is in mainstream
 			@group = Group.find(params[:group])
 		rescue Exception => e
 		end

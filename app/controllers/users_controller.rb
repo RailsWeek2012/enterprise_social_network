@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     if params[:reservation].nil?
       @company = Company.new(params[:company])
     else
+	    # user has been invited, company already exists
 	    @company = Company.find(params[:company][:id])
 	    @user.company = @company
 	    Reservation.find_by_token(params[:reservation][:token]).delete
@@ -97,6 +98,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 	      if params[:reservation].nil?
+		      # set company owner
 	        @company.owner = @user
 	        @company.save
 	        @company.create_default_infos
@@ -134,6 +136,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.company.owner != @user
 	    @user.groups.each do |g|
+		    # destroy groups, where user is only member
 		    if g.users.count == 1 && g.users.first == @user
 			    g.posts.destroy_all
 			    g.destroy
