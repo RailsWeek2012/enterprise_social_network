@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Post < ActiveRecord::Base
   attr_accessible :company_id, :group_id, :message, :user_id, :parent_id
 
@@ -24,12 +25,20 @@ class Post < ActiveRecord::Base
   end
 
 	def contains_link?
-		url = URI.extract(self.message)
-		url.length > 0
+		!self.extract_link.nil?
 	end
 
 	def extract_link
-		URI.extract(self.message).first
+		url = nil
+		URI.extract(self.message) do |u|
+			if u =~ URI.regexp
+				unless u.match(/http[s]?:\/\//).nil?
+					url = u
+					break
+				end
+			end
+		end
+		return url
 	end
 
   def extract_images

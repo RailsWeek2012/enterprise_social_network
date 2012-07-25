@@ -61,6 +61,7 @@ $post_border: 1px solid #D3D3D3;
 }
 
 .post {
+  position: relative;
   padding: 0px;
   margin-bottom: 12px;
   border: $post_border;
@@ -90,8 +91,10 @@ $post_border: 1px solid #D3D3D3;
   }
 
   .actions {
+    position: absolute;
     float: right;
     margin: 2px;
+    right: 0px;
 
     .btn {
       opacity: 0.5;
@@ -121,9 +124,11 @@ $post_border: 1px solid #D3D3D3;
   }
 
   .message {
+    margin-top: 15px;
     padding: 4px;
     max-height: 100px;
     overflow: hidden;
+    word-wrap: break-word;
 
     textarea {
       width: 100%;

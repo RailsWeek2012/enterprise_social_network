@@ -26,7 +26,9 @@ if @post.contains_link?
                 },
                 success: function() {
                     $('#post_<%= @post.id %> .preview img, #comment_<%= @post.id %> .preview img').attr("src", image_url);
-                    $('.image_chooser').remove();
+                    $('.image_chooser').fadeOut(400, function() {
+                        $(this).remove();
+                    });
                 }
             });
         });
