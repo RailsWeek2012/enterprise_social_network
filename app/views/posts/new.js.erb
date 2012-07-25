@@ -3,4 +3,17 @@
             '<%= escape_javascript(
                     render(partial: 'posts/form')
             ) %>').slideDown();
+    $('#post_<%= @post.parent_id %> .add_comment form').submit(function() {
+        $(this).block({
+            message: '<h1><img src="/assets/loader.gif" /> Loading...</h1>',
+            css: {
+                color: 'white',
+                backgroundColor: 'none',
+                border: '0px'
+            },
+            overlayCSS: {
+                opacity: 0.9
+            }
+        });
+    });
 <% end %>

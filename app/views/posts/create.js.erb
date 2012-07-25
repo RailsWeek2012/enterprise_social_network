@@ -6,8 +6,9 @@ if @post.contains_link?
         $('.image_chooser').css({
             'height': $(document).height()
         });
-        $('.image_chooser .images').css({
-            'width': 0.7*$(window).width()
+        $('.image_chooser .images, .image_chooser h1').css({
+            'width': 0.7*$(window).width(),
+            'top': $(window).scrollTop()
         });
         <%
         @post.extract_images.each do |u|
