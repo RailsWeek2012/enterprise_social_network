@@ -21,6 +21,15 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def set_image_url
+		@post = Post.find(params[:id])
+		@post.update_attribute(:image_url, params[:image_url])
+
+		respond_to do |format|
+			format.json { head :no_content }
+		end
+	end
+
   # GET /posts
   # GET /posts.json
   def index
@@ -85,6 +94,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    if @post.contains_link? && @post.extract_images.length > 0
+	    @post.image_url = @post.extract_images.first
+    end
 
     respond_to do |format|
       if @post.save

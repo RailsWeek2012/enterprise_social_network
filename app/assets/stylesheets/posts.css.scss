@@ -17,7 +17,51 @@ $post_border: 1px solid #D3D3D3;
   }
 }
 
+.image_chooser {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0px;
+  z-index: 1000;
+  background-color: rgba(0,0,0,0.9);
+
+  h1 {
+    margin: 80px auto;
+    width: 300px;
+    color: white;
+  }
+
+  .images {
+    margin: 0px auto;
+    .image {
+      float: left;
+      margin: 10px;
+      width: 120px;
+      height: 100px;
+
+      img {
+        max-width: 120px;
+        max-height: 100px;
+        padding: 10px;
+        background-color: white;
+        transition-duration: 0.4s;
+        -o-transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+      }
+      img:hover {
+        transform: scale(1.1);
+        -o-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+      }
+    }
+  }
+}
+
 .post {
+  position: relative;
   padding: 0px;
   margin-bottom: 12px;
   border: $post_border;
@@ -47,8 +91,10 @@ $post_border: 1px solid #D3D3D3;
   }
 
   .actions {
+    position: absolute;
     float: right;
     margin: 2px;
+    right: 0px;
 
     .btn {
       opacity: 0.5;
@@ -82,9 +128,11 @@ $post_border: 1px solid #D3D3D3;
   }
 
   .message {
+    margin-top: 15px;
     padding: 4px;
     max-height: 100px;
     overflow: hidden;
+    word-wrap: break-word;
 
     textarea {
       width: 100%;
