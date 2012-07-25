@@ -33,4 +33,8 @@ class Post < ActiveRecord::Base
 		agent.get(self.extract_link)
 		agent
 	end
+
+	def get_group_posts
+		where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
+	end
 end

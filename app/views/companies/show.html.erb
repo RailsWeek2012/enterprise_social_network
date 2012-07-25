@@ -2,10 +2,7 @@
   <%= link_edit_company(@company) %>
 </div>
 <div class="well">
-    <p>
-      <b>Name:</b>
-      <%= @company.name %>
-    </p>
+    <h1><%= @company.name %></h1>
     <p>
       <b>Owner:</b>
       <% if current_user && current_user.company == @company %>

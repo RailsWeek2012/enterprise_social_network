@@ -1,4 +1,4 @@
-<div class="btn-group actions">
+<div class="btn-group actions" xmlns="http://www.w3.org/1999/html">
   <%=  link_to users_path, class: "btn" do %>
     <i class="icon-chevron-left"></i> Members
   <% end %>
@@ -15,15 +15,7 @@
     <div class="image">
       <%= gravatar_image_tag(@user.email, alt: @user.full_name, gravatar: { size: 100 }) %>
     </div>
-    <p>
-      <b>First name:</b>
-      <%= @user.first_name %>
-    </p>
-
-    <p>
-      <b>Last name:</b>
-      <%= @user.last_name %>
-    </p>
+    <h1><%= @user.full_name %></h1>
 
     <p>
       <b>Email:</b>

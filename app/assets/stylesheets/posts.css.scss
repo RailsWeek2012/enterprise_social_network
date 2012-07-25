@@ -52,6 +52,10 @@ $post_border: 1px solid #D3D3D3;
 
     .btn {
       opacity: 0.5;
+      transition-duration: 0.4s;
+      -o-transition-duration: 0.4s;
+      -moz-transition-duration: 0.4s;
+      -webkit-transition-duration: 0.4s;
     }
     .btn:hover {
       opacity: 1;

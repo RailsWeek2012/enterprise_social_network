@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	def like
-		l = Like.create({user_id: current_user.id, post_id: params[:id]})
+		l = Like.create(user_id: current_user.id, post_id: params[:id])
 
 		@post = Post.find(params[:id])
 
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 		  else
 			  @group = Group.find(params[:group])
 			  if current_user.groups.include? @group
-			    @posts = Post.where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
+			    @posts = Post.get_group_posts
 			  else
 				  redirect_to root_path
 				  return
@@ -88,7 +88,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Post successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
 	      format.js
       else
@@ -105,7 +105,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.user == current_user && @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post, notice: 'Post successfully updated.' }
         format.js
       else
         format.html { render action: "edit" }
