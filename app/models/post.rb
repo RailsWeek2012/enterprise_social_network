@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
 
 	def get_link_infos
 		agent = Mechanize.new
-		agent.get(self.extract_link)
+		agent.get(self.extract_link, Rack::Utils.parse_nested_query(URI.parse(self.extract_link).query))
 		agent
 	end
 

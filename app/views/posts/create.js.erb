@@ -3,9 +3,6 @@ if @post.contains_link?
     if @post.extract_images.length > 0
         %>
         $('body').append('<div class="image_chooser"><h1>Choose an image</h1><div class="images"></div></div>');
-        $('.image_chooser').css({
-            'height': $(document).height()
-        });
         $('.image_chooser .images, .image_chooser h1').css({
             'width': 0.7*$(window).width(),
             'top': $(window).scrollTop()
@@ -17,6 +14,9 @@ if @post.contains_link?
             <%
         end
         %>
+        $('.image_chooser').css({
+            'height': $(document).height()
+        });
         $('.image_chooser .images .image').click(function() {
             var image_url = $(this).find('img').attr("src");
             $.ajax({
