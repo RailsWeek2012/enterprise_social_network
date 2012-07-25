@@ -2,7 +2,7 @@
     <div class="post" id="post_<%= post.id %>">
       <h4 class="name"><%= profile_link post.user %></h4>
       <% if post.user_id == current_user.id %>
-          <div class="actions">
+          <div class="actions btn-group">
           <%= link_to edit_post_path(post), remote: true, class: "btn btn-mini" do  %>
               <i class="icon-pencil"></i> Edit
           <% end %>
@@ -58,7 +58,7 @@
     <% end %>
     <h4 class="name"><%= profile_link post.user %></h4>
     <% if post.user_id == current_user.id %>
-        <div class="actions">
+        <div class="actions btn-group">
         <%= link_to edit_post_path(post), remote: true, class: "btn btn-mini" do  %>
             <i class="icon-pencil"></i> Edit
         <% end %>
