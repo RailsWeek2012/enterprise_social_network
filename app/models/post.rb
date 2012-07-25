@@ -29,16 +29,7 @@ class Post < ActiveRecord::Base
 	end
 
 	def extract_link
-		url = nil
-		URI.extract(self.message) do |u|
-			if u =~ URI.regexp
-				unless u.match(/http[s]?:\/\//).nil?
-					url = u
-					break
-				end
-			end
-		end
-		return url
+		url = URI.extract(self.message, ["http", "https", "ftp"]).first
 	end
 
   def extract_images
