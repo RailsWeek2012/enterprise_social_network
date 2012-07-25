@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
 		agent
 	end
 
-	def get_group_posts
-		where('company_id = ? AND group_id = ?', current_user.company_id, params[:group]).order('created_at DESC')
+	def self.get_group_posts company_id, group_id
+		Post.where('company_id = ? AND group_id = ?', company_id, group_id).order('created_at DESC')
 	end
 end

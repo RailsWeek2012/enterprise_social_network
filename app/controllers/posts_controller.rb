@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 		  else
 			  @group = Group.find(params[:group])
 			  if current_user.groups.include? @group
-			    @posts = Post.get_group_posts
+			    @posts = Post.get_group_posts(current_user.company_id, params[:group])
 			  else
 				  redirect_to root_path
 				  return
