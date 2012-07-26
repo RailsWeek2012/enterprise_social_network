@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 			  # get group specific posts
 			  @group = Group.find(params[:group])
 			  if current_user.groups.include? @group
-			    @posts = Post.get_group_posts(params[:group])
+			    @posts = PostsHelper.get_group_posts(params[:group])
 			  else
 				  redirect_to root_path
 				  return

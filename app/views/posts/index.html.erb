@@ -17,7 +17,7 @@ $(function() {
 });
 </script>
 <%= form_tag( '/posts', remote: true, id: "new_post" ) do %>
-    <%= text_area_tag "post[message]" %>
+    <%= text_area_tag "post[message]", nil, required: true %>
     <%= hidden_field_tag "post[user_id]", current_user.id %>
     <%= hidden_field_tag "post[group_id]", params[:group] %>
     <%= hidden_field_tag "post[company_id]", current_user.company_id %>

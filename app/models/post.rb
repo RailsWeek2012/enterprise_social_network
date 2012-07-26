@@ -48,8 +48,4 @@ class Post < ActiveRecord::Base
 		agent.get(self.extract_link, Rack::Utils.parse_nested_query(URI.parse(self.extract_link).query))
 		agent
 	end
-
-	def self.get_group_posts group_id
-		Post.where('group_id = ?', company_id, group_id).order('created_at DESC')
-	end
 end

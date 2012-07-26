@@ -5,7 +5,11 @@
 <ul class="group_members">
   <% list = (@group.users-[@group.leader]) %>
   <% list.each do |user| %>
-      <li><%= profile_link user %></li>
+      <% if GroupsUser.where('status = 0 AND user_id = ? AND group_id = ?', user.id, @group.id).length == 0 %>
+          <li><%= profile_link user %></li>
+      <% else %>
+          <li class="invited" title="Pending invitation"><%= profile_link user %></li>
+      <% end %>
   <% end %>
   <% if list.empty? %>
       <li>No other members.</li>

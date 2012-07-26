@@ -3,6 +3,10 @@ module PostsHelper
 		return Post.where('company_id = ? AND group_id IS NULL', company_id).order('created_at DESC')
 	end
 
+	def self.get_group_posts group_id
+		return Post.where('group_id = ?', group_id).order('created_at DESC')
+	end
+
 	def like_button(post)
 		check_like = Like.where('user_id = ? AND post_id = ?', current_user.id, post.id)
 		if check_like.count == 0
