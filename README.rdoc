@@ -21,7 +21,7 @@ Here grows a new enterprise social network build to bundle your employees commun
     Im Speziellen:
     http://railscasts.com/episodes/191-mechanize
     http://railscasts.com/episodes/160-authlogic
-* Stackoverflow htp://www.stackoverflow.com
+* Stackoverflow http://www.stackoverflow.com
     Wichtigste Stackoverflow-Fragen zur Lösung von spezifischen Problemen:
     http://stackoverflow.com/questions/10013287/form-submitting-twice-with-remote-true-rails-3-2
     http://stackoverflow.com/questions/7829480/no-route-matches-get-assets (25.07.2012)
