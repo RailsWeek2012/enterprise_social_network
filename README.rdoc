@@ -23,7 +23,7 @@ Here grows a new enterprise social network build to bundle your employees commun
     http://railscasts.com/episodes/160-authlogic
 * Stackoverflow http://www.stackoverflow.com
     Wichtigste Stackoverflow-Fragen zur Lösung von spezifischen Problemen:
-    http://stackoverflow.com/questions/10013287/form-submitting-twice-with-remote-true-rails-3-2
+    http://stackoverflow.com/questions/10013287/form-submitting-twice-with-remote-true-rails-3-2 >(25.07.2012)
     http://stackoverflow.com/questions/7829480/no-route-matches-get-assets (25.07.2012)
     http://stackoverflow.com/questions/2500462/how-to-extract-url-parameters-from-a-url-with-ruby-or-rails (25.07.2012)
     http://stackoverflow.com/questions/10608727/how-do-i-display-another-websites-meta-data-such-as-title-and-logo-on-my-website (25.07.2012)
