@@ -12,7 +12,20 @@ Here grows a new enterprise social network build to bundle your employees commun
 * Font-Awesome http://fortawesome.github.com/Font-Awesome "Font-Awesome Homepage"
 * Mechanize http://mechanize.rubyforge.org "Mechanize Homepage"
 * RailsGuides http://guides.rubyonrails.org "Ruby on Rails Guides"
+    Vorallem:
+    http://guides.rubyonrails.org/migrations.html
+    http://guides.rubyonrails.org/active_record_validations_callbacks.html
+    http://guides.rubyonrails.org/association_basics.html
+    http://guides.rubyonrails.org/active_record_querying.html
 * RailsCasts http://railscasts.com "Ruby on Rails Screencasts"
     Im Speziellen:
     http://railscasts.com/episodes/191-mechanize
     http://railscasts.com/episodes/160-authlogic
+* Stackoverflow htp://www.stackoverflow.com
+    Wichtigste Stackoverflow-Fragen zur Lösung von spezifischen Problemen:
+    http://stackoverflow.com/questions/10013287/form-submitting-twice-with-remote-true-rails-3-2
+    http://stackoverflow.com/questions/7829480/no-route-matches-get-assets (25.07.2012)
+    http://stackoverflow.com/questions/2500462/how-to-extract-url-parameters-from-a-url-with-ruby-or-rails (25.07.2012)
+    http://stackoverflow.com/questions/10608727/how-do-i-display-another-websites-meta-data-such-as-title-and-logo-on-my-website (25.07.2012)
+    http://stackoverflow.com/questions/4576932/ruby-on-rails-how-to-render-a-string-as-html (24.07.2012)
+    
