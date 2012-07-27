@@ -2,7 +2,7 @@
 
 Here grows a new enterprise social network build to bundle your employees communication in to one place. Easily.
 
-== Used Software
+== Used Sources
 * Ruby on Rails https://github.com/rails/rails "Ruby on Rails@Github"
 * Authlogic https://github.com/binarylogic/authlogic "Authlogic@Github"
 * Twitter Bootstrap http://twitter.github.com/bootstrap/index.html "Twitter Bootstrap Homepage"
